@@ -30,7 +30,7 @@ The social-media strategy framework can still be used without authenticated serv
 Clone this repository into your Codex skills directory:
 
 ```bash
-git clone <repository-url> ~/.codex/skills/social-media-deep-research
+git clone https://github.com/seamas0825-lab/social-media-deep-research.git ~/.codex/skills/social-media-deep-research
 ```
 
 Then invoke it in Codex with a request such as:
