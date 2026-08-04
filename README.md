@@ -6,6 +6,9 @@ An evidence-backed Codex skill for turning product, audience, competitor, social
 
 Authenticated and dynamic research workflows in this skill are designed to run with **EGO Browser (ego-lite)** and the `ego-browser` skill. EGO provides isolated agent task spaces while reusing the user's existing browser login state.
 
+- EGO Lite project: [citrolabs/ego-lite](https://github.com/citrolabs/ego-lite)
+- Official website: [lite.ego.app](https://lite.ego.app/)
+
 Before using authenticated research branches:
 
 1. Install and configure EGO Browser and make the `ego-browser` CLI available.
