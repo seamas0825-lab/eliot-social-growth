@@ -30,6 +30,14 @@ def validate_case(case, path):
     for field in CASE_FIELDS - {"id", "input"}:
         if not isinstance(case[field], list) or not case[field]:
             raise ValueError(f"{path.name}: {field} must be a non-empty list")
+    evaluation = case.get("evaluation")
+    if evaluation is not None:
+        required = {"applicable_criteria", "minimum_total", "mandatory_twos"}
+        missing_eval = sorted(required - set(evaluation))
+        if missing_eval:
+            raise ValueError(f"{path.name}: evaluation missing: {', '.join(missing_eval)}")
+        if not isinstance(evaluation["applicable_criteria"], list) or not evaluation["applicable_criteria"]:
+            raise ValueError(f"{path.name}: evaluation.applicable_criteria must be a non-empty list")
 
 
 def run_command(command, stdin_text, timeout):
@@ -42,8 +50,29 @@ def run_command(command, stdin_text, timeout):
     return result.stdout
 
 
-def score_result(rubric, judgment):
-    expected = [item["id"] for item in rubric["criteria"]]
+def evaluation_policy(rubric, case):
+    all_criteria = [item["id"] for item in rubric["criteria"]]
+    override = case.get("evaluation")
+    if not override:
+        return {
+            "applicable_criteria": all_criteria,
+            "minimum_total": rubric["pass_conditions"]["minimum_total"],
+            "mandatory_twos": rubric["pass_conditions"]["mandatory_twos"],
+        }
+    unknown = sorted(set(override["applicable_criteria"]) - set(all_criteria))
+    if unknown:
+        raise ValueError(f"{case['id']}: unknown applicable criteria: {', '.join(unknown)}")
+    if not set(override["mandatory_twos"]).issubset(set(override["applicable_criteria"])):
+        raise ValueError(f"{case['id']}: mandatory_twos must be applicable")
+    maximum = len(override["applicable_criteria"]) * 2
+    if not 0 <= override["minimum_total"] <= maximum:
+        raise ValueError(f"{case['id']}: minimum_total must be between 0 and {maximum}")
+    return override
+
+
+def score_result(rubric, case, judgment):
+    policy = evaluation_policy(rubric, case)
+    expected = policy["applicable_criteria"]
     raw_scores = judgment.get("scores", {})
     normalized = {}
     for criterion in expected:
@@ -53,13 +82,13 @@ def score_result(rubric, judgment):
         normalized[criterion] = {"score": value["score"], "reason": str(value.get("reason", ""))}
     total = sum(value["score"] for value in normalized.values())
     automatic_failures = judgment.get("automatic_failures", [])
-    mandatory = rubric["pass_conditions"]["mandatory_twos"]
+    mandatory = policy["mandatory_twos"]
     passed = (
         not automatic_failures
-        and total >= rubric["pass_conditions"]["minimum_total"]
+        and total >= policy["minimum_total"]
         and all(normalized[item]["score"] == 2 for item in mandatory)
     )
-    return normalized, total, len(expected) * 2, automatic_failures, passed
+    return normalized, total, len(expected) * 2, automatic_failures, passed, policy
 
 
 def main():
@@ -67,9 +96,11 @@ def main():
     parser.add_argument("--case", action="append", help="Case id; repeatable. Defaults to all cases.")
     parser.add_argument("--validate-only", action="store_true")
     parser.add_argument("--agent-command")
+    parser.add_argument("--response-file", help="Use an existing agent response instead of --agent-command.")
     parser.add_argument("--agent-model")
     parser.add_argument("--agent-tool")
     parser.add_argument("--judge-command")
+    parser.add_argument("--judgment-file", help="Use existing judge JSON instead of --judge-command.")
     parser.add_argument("--judge-model")
     parser.add_argument("--judge-tool")
     parser.add_argument("--timeout", type=int, default=900)
@@ -106,40 +137,61 @@ def main():
             "note": "This validates eval wiring and schemas; it is not a behavioral model benchmark.",
         }
     else:
-        required = [
-            "agent_command", "agent_model", "agent_tool",
-            "judge_command", "judge_model", "judge_tool",
-        ]
+        required = ["agent_model", "agent_tool", "judge_model", "judge_tool"]
         missing = [name.replace("_", "-") for name in required if not getattr(args, name)]
         if missing:
             parser.error("behavioral runs require --" + ", --".join(missing))
+        if bool(args.agent_command) == bool(args.response_file):
+            parser.error("provide exactly one of --agent-command or --response-file")
+        if bool(args.judge_command) == bool(args.judgment_file):
+            parser.error("provide exactly one of --judge-command or --judgment-file")
+        if (args.response_file or args.judgment_file) and len(cases) != 1:
+            parser.error("file-backed behavioral runs require exactly one --case")
         results = []
         for case in cases:
             agent_prompt = json.dumps({"case": case, "rubric": rubric}, ensure_ascii=False)
-            response = run_command(args.agent_command, agent_prompt, args.timeout).strip()
+            response = (
+                Path(args.response_file).read_text(encoding="utf-8").strip()
+                if args.response_file
+                else run_command(args.agent_command, agent_prompt, args.timeout).strip()
+            )
+            policy = evaluation_policy(rubric, case)
             judge_input = json.dumps({
                 "case": case,
                 "rubric": rubric,
                 "agent_response": response,
                 "required_output": {
-                    "scores": {criterion["id"]: {"score": "0|1|2", "reason": "traceable reason"} for criterion in rubric["criteria"]},
+                    "scores": {criterion: {"score": "0|1|2", "reason": "traceable reason"} for criterion in policy["applicable_criteria"]},
                     "automatic_failures": [],
                 },
             }, ensure_ascii=False)
-            judgment = json.loads(run_command(args.judge_command, judge_input, args.timeout))
-            scores, total, maximum, failures, passed = score_result(rubric, judgment)
+            judgment = (
+                json.loads(Path(args.judgment_file).read_text(encoding="utf-8"))
+                if args.judgment_file
+                else json.loads(run_command(args.judge_command, judge_input, args.timeout))
+            )
+            scores, total, maximum, failures, passed, policy = score_result(rubric, case, judgment)
             results.append({
                 "case_id": case["id"], "scores": scores, "total": total,
                 "maximum": maximum, "automatic_failures": failures,
-                "passed": passed, "agent_response": response,
+                "passed": passed, "evaluation_policy": policy,
+                "agent_response": response,
             })
         result = {
             "schema_version": 1,
             "run_type": "behavioral-evaluation",
             "skill_version": (ROOT / "VERSION").read_text().strip(),
             "run_at": now.isoformat(),
-            "agent": {"model": args.agent_model, "tool": args.agent_tool, "command": args.agent_command},
-            "judge": {"model": args.judge_model, "tool": args.judge_tool, "command": args.judge_command},
+            "agent": {
+                "model": args.agent_model, "tool": args.agent_tool,
+                "command": args.agent_command,
+                "response_file": Path(args.response_file).name if args.response_file else None,
+            },
+            "judge": {
+                "model": args.judge_model, "tool": args.judge_tool,
+                "command": args.judge_command,
+                "judgment_file": Path(args.judgment_file).name if args.judgment_file else None,
+            },
             "rubric": str(rubric_path.relative_to(ROOT)),
             "results": results,
             "score": {
