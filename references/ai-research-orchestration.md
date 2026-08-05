@@ -20,18 +20,19 @@ Select the smallest useful set. These are default roles, not permanent claims ab
 
 Do not ask multiple systems the same generic question. A valid multi-tool plan names the distinct decision or uncertainty owned by every branch.
 
-## Operate through EGO
+## Select and operate the browser adapter
 
-1. Read and follow the `ego-browser` skill.
-2. Create one isolated EGO task space for the research goal and reuse it across rounds so the user's authenticated state is available without disturbing normal browser tabs.
-3. Open only the services selected for the branch. Inspect the page state before acting and confirm the visible account, model, mode, and research feature.
-4. Switch accounts only through an already available account chooser and only when the target account is specified by the user or this reference. Never type or expose passwords, recovery codes, one-time codes, API keys, or other secrets.
-5. If login, CAPTCHA, 2FA, payment, consent, or a sensitive account choice requires the user, hand off the task space and state the exact action needed. Resume only after explicit confirmation.
-6. Keep scratch tabs under control. At completion, retain only pages the user explicitly needs to see; otherwise complete and close the task space according to the EGO skill.
+1. Read [platform-compatibility.md](platform-compatibility.md) and select the operating-system path before acting.
+2. On macOS, read and follow the `ego-browser` skill. Create one isolated EGO task space for the research goal and reuse it across rounds so authenticated state is available without disturbing normal browser tabs.
+3. On Windows, require Browser Use plus the `eze-is/web-access` skill. Follow their current setup instructions, connect only to the intended Chrome or Edge instance, and verify every meaningful action with fresh page state. Do not imitate EGO helper names when the host exposes different tools.
+4. Open only the services selected for the branch. Inspect the page state before acting and confirm the visible account, model, mode, and research feature.
+5. Switch accounts only through an already available account chooser and only when the target account is specified by the user. Never type or expose passwords, recovery codes, one-time codes, API keys, or other secrets.
+6. If login, CAPTCHA, 2FA, payment, consent, or a sensitive account choice requires the user, hand browser control to the user and state the exact action needed. Resume only after explicit confirmation.
+7. Keep scratch tabs under control. At completion, retain only pages the user explicitly needs to see; otherwise close the agent-owned browser session or task space according to the active browser adapter.
 
 ## Use a multi-round conversation protocol
 
-Give each service a compact research brief containing the product, decision, audience, market, time window, constraints, known evidence, and assigned branch. Then use these rounds:
+Read [ai-prompt-quality.md](ai-prompt-quality.md) and pass the prompt quality gate before submission. Give each service a compact research brief containing the product, official URLs, verified product facts, decision, audience, market, time window, constraints, known evidence, and assigned branch. Then use these rounds:
 
 1. **Discovery:** Ask the bounded question and request direct source URLs, publication or observation dates, and claim-level confidence.
 2. **Interrogation:** Ask which important evidence is missing, what would falsify the initial synthesis, and which findings are observation versus inference.
@@ -56,7 +57,7 @@ For Reddit research, sample across relevant communities and thread contexts. Sep
 
 ## Handle long-running research jobs
 
-Apply the parent skill's ten-second anti-blocking rule. Preserve the task-space ID, conversation URL, current mode, and visible job state; continue independent branches; and poll only at convergence points. Never submit a duplicate Deep Research job while the first remains active.
+Apply the parent skill's ten-second anti-blocking rule. Preserve the browser session or task-space ID, conversation URL, current mode, exact prompt, and visible job state; continue independent branches; and poll only at convergence points. Never submit a duplicate Deep Research job while the first remains active.
 
 ## Record the branch result
 
@@ -65,9 +66,11 @@ Store this minimum metadata for every AI-assisted branch:
 ```text
 Service/model/mode:
 Account verified:
+Browser adapter:
 Conversation URL:
 Observed date:
 Assigned question:
+Exact prompt saved:
 Decision affected:
 Useful source URLs:
 Evidence recovered:
