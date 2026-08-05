@@ -1,4 +1,3 @@
-[Uploading 2026-08-06-structural-validation.json…]()
 # Evaluation Harness
 
 The cases are executable fixtures, not example prose. Install the test dependency and validate all cases:
