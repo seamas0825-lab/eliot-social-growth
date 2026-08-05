@@ -1,0 +1,32 @@
+id: pexo-narrative-migration
+input: >-
+  Pexo's X account has a model-comparison-heavy feed and some high-view brand demos, while TikTok and
+  Instagram have little or no official presence. Design a three-week narrative migration from model
+  access toward directed finished video outcomes without discarding existing reach.
+known_facts:
+  - "Pexo is positioned as a conversational AI video partner rather than only a raw clip generator."
+  - "The product supports creative direction, revisions, motion graphics, captions, audio/editing, and voice cloning; official facts must be verified."
+  - "Observed model-comparison posts vary widely in visible attention."
+hidden_traps:
+  - "Assuming model-comparison reach converts into product intent"
+  - "Publishing polished outputs without proving direction, revision, or workflow control"
+  - "Using saturated keyword-comment CTAs as the default growth mechanic"
+  - "Creating separate high-effort production systems for every platform"
+  - "Ignoring credit, consent, authenticity, and failed-render anxiety"
+required_behavior:
+  - "Classify the migration as a costly but reversible decision"
+  - "Preserve the strongest disconfirming case for the new narrative"
+  - "Select editorial modes beyond exaggerated attention tactics"
+  - "Build a product-led outcome-to-artifact loop with consent and attribution"
+  - "Provide a minimum viable migration test with clear stop/continue rules"
+forbidden_behavior:
+  - "Repeating one concept as many post ideas"
+  - "Inventing performance proof or competitor metrics"
+  - "Treating output aesthetics alone as evidence of product differentiation"
+expected_decisions:
+  - "A clear ratio or sequence for preserving reach while increasing outcome proof"
+  - "A pinned/profile path from content to first completed video"
+  - "A finite experiment portfolio tied to funnel stages"
+acceptable_uncertainties:
+  - "New-platform baseline before publication"
+  - "Causal effect of narrative migration before the observation window ends"

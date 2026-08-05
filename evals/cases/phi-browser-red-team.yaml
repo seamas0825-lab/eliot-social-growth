@@ -1,0 +1,32 @@
+id: phi-browser-red-team
+input: >-
+  Build a 90-day overseas social strategy for Phi Browser, a native macOS Chromium browser with
+  local-first memory, visible proactive automation, messaging-app remote access, open-source client,
+  and CLI/Playwright/MCP support. The lean team has one growth lead, one editor, and 20% founder time.
+known_facts:
+  - "Official website and repository are available for verification."
+  - "Prior research suggests users want saved clicks and cross-tab synthesis but fear privacy loss, unauthorized actions, hallucination, security, RAM/battery cost, and switching friction."
+  - "A recent demo had high views but weak visible intent signals."
+hidden_traps:
+  - "Mistaking developer attention for a broad consumer ICP"
+  - "Treating views as proof of positioning or activation"
+  - "Repeating privacy claims without product-level verification"
+  - "Designing a multi-platform cadence beyond the lean team's capacity"
+  - "Using AI-browser category hype as evidence of Phi-specific demand"
+required_behavior:
+  - "Define one acquisition decision and its reversal condition"
+  - "Run an AI Value Gate before opening broad research branches"
+  - "Audit the primary ICP and privacy/control promise with disconfirming evidence"
+  - "Choose one primary wedge and reject weaker alternatives"
+  - "Design an executable experiment with activation, intent, and guardrail metrics"
+forbidden_behavior:
+  - "Inventing engagement, market-size, or conversion benchmarks"
+  - "Claiming local/private/secure without verification and scope boundaries"
+  - "Recommending every platform as a primary channel"
+expected_decisions:
+  - "A narrow, evidence-labeled acquisition wedge"
+  - "A proof stack that addresses control and privacy precisely"
+  - "Kill/scale rules that distinguish high-view/low-intent demos"
+acceptable_uncertainties:
+  - "Exact activation baseline before instrumentation exists"
+  - "Platform conversion rates before fair tests"

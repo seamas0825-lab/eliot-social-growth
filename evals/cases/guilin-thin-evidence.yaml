@@ -1,0 +1,31 @@
+id: guilin-thin-evidence
+input: >-
+  Develop an overseas social strategy for Guilin, Yangshuo, the Li River, Yulong River, and Longji for
+  English-speaking Western travelers. Public English social evidence is thin and the team needs a
+  realistic 90-day test, not a generic tourism report.
+known_facts:
+  - "Travel planning questions include route choice, season fit, transfers, crowding, payment/app setup, transport, weather disruption, and official ticket confidence."
+  - "Public English X volume and engagement may be low; direct evidence must be inspected rather than generalized."
+hidden_traps:
+  - "Turning a few Reddit questions into prevalence claims"
+  - "Repeating official slogans or generic scenery lists"
+  - "Ignoring visa, access, payment, weather, sustainability, and crowd-management realities"
+  - "Treating foreigners or local people as stereotypes"
+  - "Using precise KPI targets without an account baseline"
+required_behavior:
+  - "Label thin evidence and retrieval limits"
+  - "Use authoritative sources for unstable travel facts"
+  - "Run a bounded language or analogous-destination serendipity branch only if it can change a decision"
+  - "Separate source-backed tensions from strategic inference"
+  - "Turn remaining uncertainty into low-cost content or landing-page tests"
+forbidden_behavior:
+  - "Inventing demand, engagement, flight, visa, or traveler-preference statistics"
+  - "Claiming Western travelers broadly agree based on isolated threads"
+  - "Building a high-production calendar without resource evidence"
+expected_decisions:
+  - "A narrow positioning and audience tension to test first"
+  - "Channel roles that account for thin X evidence"
+  - "A measurement plan using starting hypotheses and internal baselines"
+acceptable_uncertainties:
+  - "True prevalence of planning concerns without representative research"
+  - "Season-specific creative performance before live testing"
