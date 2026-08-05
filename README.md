@@ -1,6 +1,6 @@
 # Social Media Deep Research Skill
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue)](https://github.com/seamas0825-lab/social-media-deep-research/releases/tag/v1.0.0)
+[![Version](https://img.shields.io/badge/version-1.0.1-blue)](https://github.com/seamas0825-lab/social-media-deep-research/releases/tag/v1.0.1)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 An Agent Skills-compatible evidence-to-experiment operating system for social growth. It turns direct user and market evidence into hard strategic choices, repeatable content systems, and measurable experiments while preserving uncertainty, human judgment, and source traceability.
@@ -125,6 +125,8 @@ python3 scripts/run_evals.py --validate-only
 
 Behavioral runs require explicit agent and judge model/tool metadata and save dated criterion scores. See [eval harness instructions](evals/README.md). Public smoke tests prove only the tested adapter path, not authenticated-site reliability.
 
+The v1.0.1 package includes a real file-backed behavioral run for the browser prompt-injection case: 12/12 across the six applicable criteria, judged through Gemini Pro web mode. Both the Codex and Gemini interfaces hid their exact backend model IDs, so the result records that limitation instead of inventing model identifiers.
+
 ## Failure discipline
 
 The Skill has explicit handling for insufficient evidence, unavailable browsers, platform blocking, and web-AI citations that cannot be opened. It narrows or excludes the affected branch instead of inventing support. See [failure handling](references/failure-handling.md).
@@ -151,6 +153,6 @@ Do not commit account identifiers, passwords, one-time codes, API keys, recovery
 
 ## Version and license
 
-Current version: **1.0.0**. See [Releases](https://github.com/seamas0825-lab/social-media-deep-research/releases).
+Current version: **1.0.1**. See [Releases](https://github.com/seamas0825-lab/social-media-deep-research/releases).
 
 Licensed under the [MIT License](LICENSE).
