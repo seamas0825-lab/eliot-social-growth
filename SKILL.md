@@ -1,6 +1,6 @@
 ---
 name: social-media-deep-research
-description: Conduct evidence-backed deep research for social-media marketing in any product category, then translate user psychology and cross-category content mechanisms into executable positioning, content systems, experiments, and measurement plans. Use for overseas or domestic social strategy, audience insight, competitor and analogous-account research, content benchmarking, platform case analysis, first-month launch plans, low-resource production systems, or when the user asks to research products across TikTok, Instagram, YouTube, X, Reddit, Facebook, Douyin, Xiaohongshu, forums, reviews, and authenticated AI research tools through EGO.
+description: Conduct evidence-backed deep research for social-media marketing in any product category, then translate user psychology and cross-category content mechanisms into executable positioning, content systems, experiments, and measurement plans. Use with any Agent Skills-compatible AI agent for overseas or domestic social strategy, audience insight, competitor and analogous-account research, content benchmarking, platform case analysis, first-month launch plans, low-resource production systems, or research across TikTok, Instagram, YouTube, X, Reddit, Facebook, Douyin, Xiaohongshu, forums, reviews, and authenticated web AI tools.
 ---
 
 # Social Media Deep Research
@@ -36,7 +36,21 @@ Read only the references needed for the current request:
 - Read [references/research-schema.md](references/research-schema.md) when collecting, scoring, or comparing cases and user comments.
 - Read [references/category-transfer.md](references/category-transfer.md) when translating mechanisms between products, markets, platforms, or creator types.
 - Read [references/deliverables.md](references/deliverables.md) when producing a strategy document, research database, content calendar, experiment plan, spreadsheet, or Feishu deliverable.
-- Read [references/ai-research-orchestration.md](references/ai-research-orchestration.md) before using authenticated AI services through EGO, including Grok, Perplexity, Gemini, ChatGPT, Doubao, DeepSeek, ChatGLM, Qwen, or Kimi.
+- Read [references/platform-compatibility.md](references/platform-compatibility.md) before selecting the host agent, operating-system path, or authenticated-browser adapter.
+- Read [references/ai-research-orchestration.md](references/ai-research-orchestration.md) before using authenticated AI services through an agent-controlled browser, including Grok, Perplexity, Gemini, ChatGPT, Doubao, DeepSeek, ChatGLM, Qwen, or Kimi.
+- Read [references/ai-prompt-quality.md](references/ai-prompt-quality.md) before composing or submitting prompts to any web AI service.
+
+## Adapt to the host agent and operating system
+
+Follow the open Agent Skills structure: treat `SKILL.md` and its relative references as the source of truth, and map capability names to the tools actually exposed by the host agent. Do not assume Codex-specific tool names, task primitives, or UI metadata.
+
+Select the authenticated-browser path before opening research branches:
+
+- **macOS — preferred:** use EGO Browser with the installed `ego-browser` skill. Reuse isolated task spaces and the user's existing authenticated browser state.
+- **Windows — supported fallback:** require Browser Use plus the `eze-is/web-access` skill. Use Chrome or Edge with the required remote-debugging configuration. Treat this path as lower-confidence than macOS plus EGO for complex authenticated and dynamic sites; allow more setup time, smaller action batches, and stricter readback verification.
+- **Other environments:** use an equivalent browser adapter only when it exposes observation, interaction, authenticated state, handoff, and verification. Otherwise limit the branch to open-web research and label the missing authenticated evidence.
+
+Read [references/platform-compatibility.md](references/platform-compatibility.md) for installation and capability mapping for Claude Code, Codex, WorkBuddy, OpenClaw, Hermes Agent, and other Agent Skills-compatible hosts.
 
 ## Start with the decision, not the browsing
 
@@ -122,15 +136,17 @@ Do not ask several AI systems the same broad question. Give each a bounded role,
 
 Treat AI output as a lead until checked against source material.
 
-### Route authenticated AI research through EGO
+### Route authenticated AI research through the browser adapter
 
-When authenticated browser access is available and AI research could materially reduce uncertainty, use the `ego-browser` skill and the routing procedure in [references/ai-research-orchestration.md](references/ai-research-orchestration.md). Select only the smallest set of services with distinct jobs; do not open every service by default.
+When authenticated browser access is available and AI research could materially reduce uncertainty, use the operating-system path selected above and the routing procedure in [references/ai-research-orchestration.md](references/ai-research-orchestration.md). Select only the smallest set of services with distinct jobs; do not open every service by default.
 
 For overseas work, prefer a complementary mix such as Perplexity for source discovery and Reddit leads, Gemini Deep Research for a broad source-backed dossier, Grok for current X discourse, and ChatGPT for synthesis or contradiction testing. For China-focused work, route suitable branches to Doubao, DeepSeek, ChatGLM, Qwen, or Kimi according to the research question and available features.
 
-Run multi-round, bounded conversations rather than one broad prompt. Preserve the conversation URL, model or mode, date, useful source links, unresolved conflicts, and the decision each branch could change. Return to original posts, comments, product pages, papers, or authoritative documents before treating a claim as evidence. Cite the original source, not the AI conversation, whenever possible.
+Compile and pass every outbound prompt through [references/ai-prompt-quality.md](references/ai-prompt-quality.md). Do not submit a vague request, an unverified product brief, or a prompt without a decision, target audience, market, time window, source requirements, output schema, uncertainty rule, and anti-fabrication rule appropriate to the branch.
 
-Verify the active account and requested research mode before submission. Never enter passwords, one-time codes, or other secrets on the user's behalf. If login, CAPTCHA, 2FA, or an unavailable account blocks the required configuration, hand the EGO task space to the user and resume only after explicit confirmation.
+Run multi-round, bounded conversations rather than one broad prompt. Preserve the conversation URL, model or mode, date, exact prompt, useful source links, unresolved conflicts, and the decision each branch could change. Return to original posts, comments, product pages, papers, or authoritative documents before treating a claim as evidence. Cite the original source, not the AI conversation, whenever possible.
+
+Verify the active account and requested research mode before submission. Never enter passwords, one-time codes, or other secrets on the user's behalf. If login, CAPTCHA, 2FA, or an unavailable account blocks the required configuration, hand browser control to the user and resume only after explicit confirmation.
 
 When real-browser interaction is available, use it for authenticated or dynamic platforms and inspect actual posts and comments. Preserve direct URLs and the date observed.
 
@@ -291,7 +307,7 @@ Select the smallest deliverable set that lets the user act. Typical outputs:
 - compliance checklist;
 - spreadsheet or Base ready for weekly operation.
 
-If the user requests Feishu delivery, use Feishu CLI skills and commands rather than browser editing. Create a clean import-specific workbook with field headers on row 1; keep decorative spreadsheets separate because Base schema inference may misread title bands and merged cells. Import serially into the same destination, retain task tickets, and verify tables, fields, and sample records after conversion.
+If the user requests Feishu delivery, use an installed Feishu CLI, connector, or Feishu-specific skill rather than browser editing. Create a clean import-specific workbook with field headers on row 1; keep decorative spreadsheets separate because Base schema inference may misread title bands and merged cells. Import serially into the same destination, retain task tickets, and verify tables, fields, and sample records after conversion.
 
 Use the exact output structures in [references/deliverables.md](references/deliverables.md).
 
