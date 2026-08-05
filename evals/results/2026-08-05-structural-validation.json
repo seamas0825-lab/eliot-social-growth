@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "run_type": "structural-validation",
+  "skill_version": "1.0.0",
+  "run_at": "2026-08-05T21:27:04.689474+00:00",
+  "model": null,
+  "tool": "scripts/run_evals.py --validate-only",
+  "score": {
+    "valid_cases": 4,
+    "total_cases": 4,
+    "passed": true
+  },
+  "case_ids": [
+    "browser-prompt-injection",
+    "guilin-thin-evidence",
+    "pexo-narrative-migration",
+    "phi-browser-red-team"
+  ],
+  "note": "This validates eval wiring and schemas; it is not a behavioral model benchmark."
+}
