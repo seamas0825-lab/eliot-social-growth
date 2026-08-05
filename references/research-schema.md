@@ -2,6 +2,15 @@
 
 Use these structures when the request requires real research rather than a short conceptual answer.
 
+## Contents
+
+- [Source hierarchy](#source-hierarchy)
+- [Case record](#case-record)
+- [User-language record](#user-language-record)
+- [Contextual comparison](#contextual-comparison)
+- [Evidence sufficiency](#evidence-sufficiency)
+- [Research stop rule](#research-stop-rule)
+
 ## Source hierarchy
 
 Prefer evidence in this order, adjusting for the question:
@@ -29,7 +38,7 @@ Capture one row per useful case:
 | URL | Direct source link |
 | Observed date | Date metrics and content were inspected |
 | Public signals | Views, likes, comments, shares, saves, followers; preserve units |
-| Hook | First-frame or first-line promise |
+| Attention entry | First frame or line: direct proof, question, observation, tension, authority, utility, or another truthful entry mode |
 | Tension | Unresolved question or desired progress |
 | Proof | Visible evidence or payoff |
 | Comment psychology | Identity, correction, story projection, debate, etc. |
@@ -37,6 +46,7 @@ Capture one row per useful case:
 | Repeatable mechanism | Abstract narrative structure |
 | Production inputs | People, location, props, access, editing |
 | Risk | Brand, cultural, legal, privacy, credibility |
+| Brand acceptability | Whether the team would willingly become a brand that repeatedly publishes this mode |
 | Target translation | Proposed use for the product or creator |
 | Evidence/inference | Explicit label |
 | Confidence | High, medium, low |
@@ -61,22 +71,29 @@ Capture comments, reviews, or interview observations as:
 
 Do not confuse comment volume with market prevalence. Comments reveal language and tensions, not automatically population size.
 
-## Case scoring
+## Contextual comparison
 
-Score 1–5 on:
+Do not reduce case judgment to a single average or total. Record these first-layer decisions separately:
 
-- audience relevance;
-- strength of observed signal;
-- clarity of mechanism;
-- ease of production;
-- differentiation;
-- follow potential;
-- source reliability;
-- compliance safety.
+| Judgment | Required answer |
+|---|---|
+| Strategic fit | Which named decision, audience, and objective does this case inform? |
+| Evidence credibility | What was directly observed, how current is it, and what could not be verified? |
+| Executability | Can the actual team reproduce the mechanism with available people, access, time, budget, and approvals? |
+| Brand acceptability | Would repeated use strengthen the intended trust, taste, and long-term relationship? |
+| Fatal veto | Does privacy, consent, law, safety, editorial integrity, credibility, or platform policy make it unacceptable? |
 
-Record fatal constraints separately. A high total score never cancels a privacy, legal, safety, or credibility veto.
+Then compare cases relatively:
 
-Recommended decision bands:
+- Is it better than the current baseline for the named objective?
+- Under which conditions is it preferable to the closest alternative?
+- What is its largest cost or trade-off?
+- What evidence would make the comparison reverse?
+- Is it worth one scarce experiment slot now?
+
+Optional 1–5 scores may support sorting only when every score includes an anchored definition and a one-sentence reason. Never use a total score to override a fatal veto or hide an important trade-off.
+
+Recommended decisions:
 
 - **Adopt:** strong mechanism, feasible, safe, and strategically distinctive.
 - **Adapt:** useful mechanism but needs a different proof, participant, tone, or platform package.

@@ -10,6 +10,7 @@ Use this reference before submitting any prompt to a web AI service. Compile pro
 - [Perplexity template](#perplexity-template)
 - [Gemini Deep Research template](#gemini-deep-research-template)
 - [ChatGPT templates](#chatgpt-templates)
+- [Belief audit round](#belief-audit-round)
 - [Other web AI services](#other-web-ai-services)
 - [Multi-round control](#multi-round-control)
 - [Reject these prompts](#reject-these-prompts)
@@ -30,6 +31,7 @@ Do not submit until the prompt satisfies every applicable item:
 10. **Output schema:** specify the table, memo, case count, fields, and prioritization method needed at the convergence point.
 11. **Anti-fabrication rule:** forbid invented metrics, inaccessible citations, synthetic quotes, unsupported prevalence claims, and false precision.
 12. **Round objective:** state whether this is discovery, contradiction, decision, or extraction; do not ask one prompt to finish the entire strategy when later rounds depend on evidence.
+13. **Reversal condition:** for a material belief, state what evidence could reverse it and why the team may be motivated to keep believing it.
 
 If an item cannot be supplied, state the gap in the prompt and ask the service to preserve it as uncertainty rather than fill it by guessing.
 
@@ -42,6 +44,8 @@ Role:
 Product/topic and official URLs:
 Verified facts:
 Working hypotheses to test:
+Why we may want them to be true:
+Evidence that would reverse them:
 Decision affected:
 Audience/market/languages/platforms:
 Time window:
@@ -69,7 +73,7 @@ Audience/market: [SEGMENTS, REGIONS, LANGUAGES].
 Time window: [DATES].
 Research [SPECIFIC CATEGORY/CONVERSATION] and identify [N] concrete X posts or launch threads.
 
-For each case return: direct x.com URL, account, date, visible engagement if available, first-line hook, creative format, proof, CTA, audience response, and why it appears to work or fail. Compare [RELEVANT CONTRAST, such as founder-led vs brand account].
+For each case return: direct x.com URL, account, date, visible engagement if available, first-line attention entry, creative format, proof, CTA, audience response, and why it appears to work or fail. Compare [RELEVANT CONTRAST, such as founder-led vs brand account].
 
 Then map recurring audience language, emotional drivers, objections, and content mechanisms to [DECISION]. Separate observation from inference, flag uncertainty, and do not invent metrics or reconstruct inaccessible posts. Round 1: evidence and pattern map only.
 ```
@@ -149,6 +153,31 @@ Identify unsupported assumptions, missing segments or funnel steps, category tra
 Round 2. Make the hard choices using the evidence packet and critique above. Choose one primary acquisition wedge and one expansion narrative. Define the exact ICP, trigger, promise, activation event, proof stack, onboarding path, channel roles, weekly cadence, funnel events, KPI tree, UTM taxonomy, and kill/scale rules. Reject weaker alternatives and explain the tradeoff. Then provide the requested content-system framework without repeating one concept in different wording. Keep claims conservative and label assumptions.
 ```
 
+## Belief audit round
+
+Run this before the decision round for any primary ICP, positioning wedge, channel priority, brand-defining editorial choice, or costly operating model.
+
+```text
+Act as an adversarial belief auditor. Do not merely criticize the strategy; test whether the research question, sampling, retrieval coverage, and interpretation were constructed to confirm what the team already wanted.
+
+Working belief: [BELIEF].
+Why we want it to be true: [INCENTIVE, IDENTITY, CONVENIENCE, OR PRIOR COMMITMENT].
+Decision affected: [DECISION].
+Evidence packet: [SOURCE-LINKED SUPPORTING AND DISCONFIRMING EVIDENCE].
+Known retrieval limits: [LANGUAGES, PLATFORMS, PAYWALLS, ACCOUNT ACCESS, SAMPLE BIAS].
+
+Return only:
+1. strongest supporting evidence;
+2. strongest disconfirming evidence;
+3. plausible alternative explanations;
+4. whether “no counterevidence found” may reflect weak retrieval;
+5. the smallest evidence that would reverse the decision;
+6. what remains strategically useful if the belief is false;
+7. one recommendation: retain, narrow, test, or reject.
+
+Separate observation, reported claim, inference, and missing evidence. Do not average away real conflict or reward the most verbose source.
+```
+
 When current external facts are required, explicitly enable or request web search and retain inline source links. When the job is only to critique a supplied evidence packet, do not add unnecessary web research.
 
 ## Other web AI services
@@ -169,8 +198,9 @@ Use rounds only when each round has a distinct decision role:
 
 1. **Evidence map:** collect cases, links, user language, conflicts, and gaps.
 2. **Contradiction audit:** test sample bias, alternative explanations, missing segments, and evidence that would falsify the pattern.
-3. **Decision:** force prioritization, rejected alternatives, resource allocation, and risk controls.
-4. **Extraction:** return the exact source ledger, experiment backlog, calendar, or measurement schema needed by the main workflow.
+3. **Belief audit:** test motivated reasoning, retrieval limits, reversal evidence, and what survives if the belief fails.
+4. **Decision:** force prioritization, rejected alternatives, resource allocation, and risk controls.
+5. **Extraction:** return the exact source ledger, experiment backlog, calendar, or measurement schema needed by the main workflow.
 
 At the start of every later round, provide the relevant evidence packet and unresolved questions. Do not assume the web AI accurately remembers a prior long response. Save the exact prompt and response URL for every material branch.
 
@@ -188,3 +218,4 @@ Rewrite before sending when the prompt:
 - mixes evidence collection, final strategy, calendar, budget, and copywriting into one unbounded round;
 - invites stereotypes, political generalization, or cultural claims from thin evidence;
 - omits how uncertainty, inaccessible sources, conflicting evidence, and sample bias must be handled.
+- asks for a material commitment without disconfirming evidence or a reversal condition.

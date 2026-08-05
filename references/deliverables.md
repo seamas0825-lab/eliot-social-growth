@@ -2,6 +2,18 @@
 
 Choose only what the task needs. Keep strategy and execution linked by stable IDs.
 
+## Contents
+
+- [Strategy memo](#strategy-memo)
+- [Research database](#research-database)
+- [First-month plan](#first-month-plan)
+- [Platform packaging matrix](#platform-packaging-matrix)
+- [Convergence memo](#convergence-memo)
+- [Product-led social loop](#product-led-social-loop)
+- [Spreadsheet standards](#spreadsheet-standards)
+- [Feishu CLI handoff](#feishu-cli-handoff)
+- [Final answer](#final-answer)
+
 ## Strategy memo
 
 Use this compact structure:
@@ -16,7 +28,8 @@ Use this compact structure:
 8. First experiment cycle.
 9. Metrics and decision rules.
 10. Compliance and credibility boundaries.
-11. Sources and evidence limitations.
+11. Disconfirming evidence, reversal conditions, and rejected alternatives.
+12. Sources and evidence limitations.
 
 Lead with choices and rejected alternatives, not a research diary.
 
@@ -53,7 +66,7 @@ Fields:
 - audience;
 - pillar;
 - hypothesis;
-- hook variants;
+- attention-entry variants;
 - proof/payoff;
 - participants/location/props;
 - source mechanism IDs;
@@ -98,13 +111,13 @@ Include:
 - comment-reply workflow;
 - weekly decision checkpoint.
 
-Each planned item needs a visible payoff and a follow reason.
+Each planned item needs a credible payoff and a follow reason. Do not force an exaggerated attention entry when direct proof, quiet authority, documentary observation, or search utility better serves the brand.
 
 ## Platform packaging matrix
 
 For each platform specify:
 
-- opening frame and hook style;
+- opening frame and attention-entry style;
 - target duration range;
 - pacing and subtitle density;
 - caption depth;
@@ -115,6 +128,29 @@ For each platform specify:
 - what can be reused from the master asset.
 
 Do not require separate shoots unless the platform genuinely demands different source material.
+
+## Convergence memo
+
+Use `templates/convergence-memo.md` for material decisions. Preserve:
+
+- the decision and selected option;
+- evidence included and excluded, with reasons;
+- strongest disconfirming evidence and alternative explanation;
+- rejected directions and trade-offs;
+- unresolved uncertainty and reversal condition;
+- the cheapest next experiment;
+- the human judgment still required, if any.
+
+## Product-led social loop
+
+When a product creates visible outcomes, include:
+
+- activation event and successful outcome;
+- privacy-safe shareable artifact;
+- why a user would share and permit brand amplification;
+- how the artifact proves value without overstating causality;
+- social-to-product attribution event;
+- how recurring community requests enter templates, demos, onboarding, or product discovery.
 
 ## Spreadsheet standards
 

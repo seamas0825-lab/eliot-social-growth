@@ -2,23 +2,32 @@
 
 Use this reference only when authenticated AI services can materially improve a social-media research decision. AI output creates leads, hypotheses, clusters, and critiques; it does not become evidence until checked against an original or authoritative source.
 
-## Choose tools by branch
+## Match capability before service
 
-Select the smallest useful set. These are default roles, not permanent claims about model quality; reassign a branch when current features or access make another service better.
+Select the smallest useful capability set before naming any vendor:
 
-| Service | Default research role | Required operating note |
+| Capability required | Use when | Minimum verification |
 | --- | --- | --- |
-| Perplexity | Discover current sources, locate Reddit threads and objections, assemble source-linked leads | When available, select Kimi K3 and enable thinking mode. If unavailable, record the actual model/mode used. Open and inspect material Reddit threads and cited pages directly. |
-| Gemini | Run a broad Deep Research branch for market structure, competitors, policy, and long-form source synthesis | Select Deep Research when the branch needs it. Confirm that the active Google account matches the account specified by the user; switch only if that account is already available in the account chooser. If authentication, 2FA, or credentials are required, hand control to the user. |
-| Grok | Surface current X conversations, creator patterns, vocabulary, controversy, and fast-moving hypotheses | Verify important findings against the original X posts, accounts, dates, comments, and visible metrics. |
-| ChatGPT | Cluster evidence, pressure-test positioning, generate counter-hypotheses, and audit contradictions | Supply a bounded evidence packet. Do not use its unsourced recollection as a market fact. |
-| Doubao | Explore China-market language, creator framing, domestic audience questions, and culturally native content hypotheses | Use for China-facing branches; validate platform and market claims against native sources. |
-| DeepSeek | Decompose strategic or technical questions, compare hypotheses, and challenge causal reasoning | Ask for explicit assumptions and disconfirming evidence; verify every external claim. |
-| ChatGLM | Analyze Chinese-language material, long-form context, and domestic-market hypotheses | Preserve native terminology and check cited or quoted material at its source. |
-| Qwen | Support Chinese/multilingual synthesis, platform translation, and structured comparison | Use original-language sources when meaning could shift in translation. |
-| Kimi | Read long source packets and synthesize Chinese-language research trails | Ask it to retain source-to-claim mappings and inspect those sources directly. |
+| Live social search | Current posts, discourse, creator language, controversy, or visible social signals could change the decision | Confirm platform coverage, recency, direct URLs, and whether inaccessible posts are reconstructed or omitted |
+| Deep research | A broad source-backed dossier, policy scan, analogy validation, or market structure is genuinely needed | Confirm research mode, source traceability, completion state, and export/readback path |
+| Source discovery | The branch needs primary pages, Reddit threads, reviews, studies, or authoritative leads | Open the cited sources; reject circular or inaccessible citations |
+| Authenticated platform access | Public open-web search cannot expose the necessary dynamic page, account, comments, or feature | Confirm account, browser adapter, permissions, and user-handoff path |
+| Long-context synthesis | A supplied source packet is too large for efficient manual clustering | Preserve source-to-claim mappings and excluded evidence |
+| Multilingual native reasoning | Translation, local vocabulary, or non-English source discovery could change meaning | Preserve original-language excerpts, direct links, and translation-risk notes |
+| Adversarial review | A major belief, positioning choice, or causal story needs contradiction and reversal testing | Supply the evidence packet, retrieval limits, and explicit reversal condition |
+| Structured extraction | The convergence point needs a ledger, schema, matrix, or normalized case set | Specify exact fields and verify a sample against original sources |
 
-Do not ask multiple systems the same generic question. A valid multi-tool plan names the distinct decision or uncertainty owned by every branch.
+Then select a current adapter. Service mappings are runtime hypotheses, not system facts:
+
+| Current adapter example | Likely useful capabilities | Runtime check, limitation, and fallback |
+| --- | --- | --- |
+| Grok | Live X search and current discourse | Verify direct X access, date, visible metrics, and post context; fall back to native X inspection or another live-social adapter |
+| Perplexity | Source discovery, Reddit leads, source-linked synthesis | Verify requested model/thinking mode and open cited threads directly; fall back to search plus manual source inspection |
+| Gemini Deep Research | Deep research and broad source-backed dossiers | Verify Deep Research mode, active account, and completion/export state; fall back to another deep-research adapter or bounded manual branches |
+| ChatGPT | Adversarial review, belief audit, prioritization, structured synthesis | Supply evidence rather than relying on recollection; fall back to another reasoning adapter or an explicit manual audit |
+| Doubao, DeepSeek, ChatGLM, Qwen, or Kimi | Chinese-language, multilingual, long-context, or structured reasoning branches | Verify the exact current feature and source access; use original-language sources and another adapter when traceability is weak |
+
+For every selected adapter, record `verified date`, `verified capability`, `known limitation`, and `fallback` in run state. Do not ask multiple systems the same generic question. A valid multi-tool plan names the distinct decision or uncertainty owned by every branch.
 
 ## Select and operate the browser adapter
 
@@ -65,6 +74,9 @@ Store this minimum metadata for every AI-assisted branch:
 
 ```text
 Service/model/mode:
+Capability required:
+Capability verified date:
+Known limitation and fallback:
 Account verified:
 Browser adapter:
 Conversation URL:

@@ -2,6 +2,13 @@
 
 Use this reference when the best benchmark is outside the target category.
 
+## Contents
+
+- [Transfer sequence](#transfer-sequence)
+- [Product-family lenses](#product-family-lenses)
+- [Transfer test](#transfer-test)
+- [Common failed transfers](#common-failed-transfers)
+
 ## Transfer sequence
 
 Translate in five layers:
