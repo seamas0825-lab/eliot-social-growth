@@ -1,6 +1,14 @@
 # Social Media Deep Research Skill
 
-An open, Agent Skills-compatible workflow for turning product, audience, competitor, social-platform, community, and user-psychology research into executable social-media positioning, content systems, experiments, and measurement plans.
+An open, Agent Skills-compatible **evidence-to-experiment operating system for social growth**. It turns real user evidence into defensible decisions and executable experiments without replacing human taste, responsibility, or reality checks.
+
+It starts with three questions:
+
+```text
+What decision are you trying to make?
+What evidence could reverse that decision?
+What is the cheapest experiment that can resolve the remaining uncertainty?
+```
 
 It is not Codex-only. The core `SKILL.md` and relative references can be installed in Claude Code, Codex, WorkBuddy, OpenClaw, Hermes Agent, and other hosts that support the [Agent Skills specification](https://agentskills.io/specification). The `agents/openai.yaml` file is optional Codex UI metadata and is ignored by other hosts.
 
@@ -36,14 +44,21 @@ Browser Use and Web Access are complementary capabilities; follow both upstream 
 
 ## What it does
 
+- Runs an AI Value Gate before opening expensive multi-agent research branches.
 - Separates evidence, inference, and decisions.
+- Preserves supporting evidence, disconfirming evidence, alternative explanations, and reversal conditions through a formal Belief Audit.
+- Uses Human Harness checkpoints for decision, taste, contradiction, and execution reality.
 - Researches direct and psychologically analogous benchmarks.
 - Extracts user tensions, objections, desired progress, and content mechanisms.
-- Orchestrates distinct research roles across Grok, Perplexity, Gemini, ChatGPT, Doubao, DeepSeek, ChatGLM, Qwen, and Kimi when available.
+- Selects AI tools by required capability first, then chooses Grok, Perplexity, Gemini, ChatGPT, Doubao, DeepSeek, ChatGLM, Qwen, Kimi, or another current adapter when available.
 - Enforces a pre-submission prompt-quality gate and service-specific prompt templates for Grok, Perplexity, Gemini Deep Research, ChatGPT, and other web AI tools.
 - Returns to original posts, comments, product pages, studies, and authoritative documents before accepting AI-generated claims as evidence.
+- Protects editorial judgment with direct proof, quiet authority, documentary observation, search utility, trust repair, and other non-manipulative attention-entry modes.
+- Connects successful product outcomes to privacy-safe shareable artifacts, social proof, activation, and product learning.
+- Supports bounded serendipity and multilingual source lenses without letting weak discoveries contaminate the main evidence chain.
 - Converts findings into repeatable content pillars, falsifiable experiments, production plans, measurement rules, and optional Feishu deliverables.
 - Keeps long-running browser and Deep Research jobs off the critical path while preserving their state for later reconciliation.
+- Includes a machine-readable run-state template and Golden Evals for Phi Browser, Pexo, and thin-evidence destination research.
 
 ## Install
 
@@ -90,7 +105,7 @@ Hermes retrieves the support files explicitly referenced by `SKILL.md`.
 Then invoke the skill through the host's natural-language or slash-command mechanism, for example:
 
 ```text
-Use $social-media-deep-research to research this product and build an evidence-backed social media growth plan.
+Use $social-media-deep-research to define the decision, identify evidence that could reverse it, and design the cheapest executable social-growth experiment under the stated constraints.
 ```
 
 ## Repository structure
@@ -100,13 +115,31 @@ social-media-deep-research/
 ├── SKILL.md
 ├── agents/
 │   └── openai.yaml                    # optional Codex UI metadata
-└── references/
+├── references/
     ├── ai-prompt-quality.md
     ├── ai-research-orchestration.md
     ├── category-transfer.md
+    ├── decision-protocols.md
     ├── deliverables.md
+    ├── editorial-judgment.md
+    ├── human-harness.md
     ├── platform-compatibility.md
-    └── research-schema.md
+    ├── product-led-social.md
+    ├── research-schema.md
+    └── source-diversity.md
+├── schemas/
+│   └── run-state.yaml
+├── templates/
+│   ├── belief-audit.md
+│   ├── convergence-memo.md
+│   ├── human-checkpoint.md
+│   └── research-brief.md
+└── evals/
+    ├── rubric.yaml
+    └── cases/
+        ├── guilin-thin-evidence.yaml
+        ├── pexo-narrative-migration.yaml
+        └── phi-browser-red-team.yaml
 ```
 
 ## Privacy and account safety
