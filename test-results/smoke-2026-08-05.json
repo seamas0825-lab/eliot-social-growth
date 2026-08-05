@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "skill_version": "1.0.0",
+  "tested_at": "2026-08-05T21:26:57.960812+00:00",
+  "platform": "macOS-26.6-arm64-arm-64bit",
+  "python": "3.9.6",
+  "results": [
+    {
+      "adapter": "ego",
+      "tool_version": "ego-browser 0.4.5.9",
+      "status": "pass",
+      "exit_code": 0,
+      "duration_seconds": 0.799,
+      "stdout": "{\"ok\": true, \"adapter\": \"ego\", \"test_output\": \"\", \"test_error\": \"{\\\"ok\\\":true,\\\"taskSpaceId\\\":7,\\\"url\\\":\\\"https://example.com/\\\",\\\"title\\\":\\\"Example Domain\\\",\\\"marker\\\":true}\", \"cleanup_output\": \"\", \"cleanup_error\": \"{\\\"done\\\":true}\"}\n",
+      "stderr": ""
+    },
+    {
+      "adapter": "browser-use",
+      "tool_version": "0.13.7",
+      "status": "pass",
+      "exit_code": 0,
+      "duration_seconds": 2.461,
+      "stdout": "{\"ok\": true, \"adapter\": \"browser-use\", \"url\": \"https://example.com/\", \"title\": \"Example Domain\", \"version\": \"0.13.7\"}\n",
+      "stderr": "INFO     [BrowserSession] Setting viewport to 1920x1080 with device scale factor 1.0 whereas original device scale factor was 1.0\nINFO     [BrowserSession] 📢 on_BrowserStopEvent - Calling reset() (force=True, keep_alive=False)\nINFO     [BrowserSession] [SessionManager] Cleared all owned data (targets, sessions, mappings)\nINFO     [BrowserSession] ✅ Browser session reset complete\nINFO     [BrowserSession] ✅ Browser session reset complete\n"
+    },
+    {
+      "adapter": "web-access",
+      "tool_version": "web-access commit 7af34af; v22.22.2",
+      "status": "pass",
+      "exit_code": 0,
+      "duration_seconds": 3.277,
+      "stdout": "{\"ok\":true,\"adapter\":\"web-access\",\"url\":\"https://example.com/\",\"title\":\"Example Domain\",\"marker\":\"Example Domain\"}\n",
+      "stderr": ""
+    }
+  ],
+  "passed": true,
+  "scope": "Public-page startup, navigation, readback, and cleanup only; authenticated reliability is not implied."
+}
