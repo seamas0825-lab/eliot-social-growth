@@ -1,4 +1,4 @@
 interface:
-  display_name: "社媒营销深度调研"
-  short_description: "跨品类社媒证据研究、用户心理洞察、机制转译与实验执行规划"
-  default_prompt: "Use $social-media-deep-research to research this product and build an evidence-backed social media growth plan."
+  display_name: "社媒增长证据到实验"
+  short_description: "把真实用户证据转化为社媒增长决策、判断与可执行实验的 Agent 工作流"
+  default_prompt: "Use $social-media-deep-research to define the decision, identify evidence that could reverse it, and design the cheapest executable social-growth experiment under the stated constraints."
