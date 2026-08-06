@@ -1,4 +1,4 @@
 interface:
-  display_name: "社媒增长证据到实验"
-  short_description: "把真实用户证据转化为社媒增长决策、判断与可执行实验的 Agent 工作流"
-  default_prompt: "Use $social-media-deep-research to define the decision, identify evidence that could reverse it, and design the cheapest executable social-growth experiment under the stated constraints."
+  display_name: "Eliot Social Growth"
+  short_description: "Eliot（梁一孟）的社媒增长证据、决策门禁与实验执行工作流"
+  default_prompt: "Use $eliot-social-growth to define the decision, identify evidence that could reverse it, pass the required browser and belief gates, and design the cheapest executable social-growth experiment under the stated constraints."
