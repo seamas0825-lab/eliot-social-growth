@@ -1,4 +1,4 @@
-version: 1
+version: 2
 project:
   name: ""
   decision: ""
@@ -19,6 +19,17 @@ ai_value_gate:
   result: "no_ai | one_bounded_branch | multiple_distinct_branches"
   reason: ""
 
+browser_capability_gate:
+  adapter: ""
+  adapter_version: ""
+  verified_date: ""
+  required_capabilities: []
+  verified_capabilities: []
+  failed_capabilities: []
+  service_editor_probe: "not_required | pass | fail"
+  fallback_and_claim_restrictions: []
+  result: "not_required | pass | degraded | fail"
+
 beliefs:
   - id: "belief-001"
     statement: ""
@@ -31,6 +42,27 @@ beliefs:
     retrieval_limits: []
     reversal_condition: ""
     remains_true_if_false: ""
+    gate: "pass | provisional_test | blocked"
+    gate_reason: ""
+
+language_lenses:
+  - language_market: ""
+    purpose: ""
+    source_ids: []
+    translation_risks: []
+    mechanism_transferable: false
+    target_market_demand_verified: false
+    cultural_adaptation_required: true
+
+evidence_access_gaps:
+  - id: "gap-001"
+    claim: ""
+    surface_url: ""
+    access_state: ""
+    verification_attempts: []
+    status: "observed | reported | inferred | unverifiable"
+    excluded_precise_claim: ""
+    decision_impact: ""
 
 branches:
   - id: "branch-001"
@@ -70,6 +102,13 @@ human_checkpoints:
     decision: ""
 
 convergence:
+  multi_ai_gate: "not_required | pass | provisional_test | blocked"
+  claim_matrix_path: ""
+  shared_sources_deduplicated: false
+  verified_consensus: []
+  verified_divergence: []
+  unverified_consensus: []
+  single_branch_leads: []
   included_findings: []
   excluded_findings: []
   unresolved_uncertainties: []
