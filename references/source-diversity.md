@@ -32,9 +32,20 @@ Track non-default-language branches:
 
 Use machine translation for discovery, not invisible certainty. Preserve the original phrase when meaning matters, provide a careful paraphrase, and seek native review for sensitive claims.
 
+## Mandatory multilingual trigger
+
+Run a language lens as a core evidence branch, not optional serendipity, when any of these conditions holds:
+
+- relevant high-signal examples or counterevidence are concentrated in another language;
+- the product, creator, team, or cultural mechanism spans more than one language market;
+- English retrieval is thin while another ecosystem contains visible behavior;
+- the decision depends on native vocabulary, humor, identity, trust, or cultural correction.
+
+Choose languages from where decision-relevant evidence exists, not from the report language. Chinese creator evidence can validate a hook, production mechanic, or comment dynamic, but it does not by itself prove demand among US or European users. Record separately: **mechanism transferable**, **target-market demand verified**, and **cultural adaptation required**.
+
 ## Bounded serendipity branch
 
-Reserve at most 10%–15% of the research budget when exploration could create non-obvious value. Choose one branch:
+Reserve at most 10%–15% of the research budget when optional exploration could create non-obvious value. This cap does not apply to a language branch triggered by the mandatory rule above. Choose one branch:
 
 - an adjacent audience behaving similarly for a different reason;
 - a category solving the same emotional tension with another format;

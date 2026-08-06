@@ -2,7 +2,7 @@
 
 Use this reference to install and run the skill across Agent Skills-compatible hosts and operating systems. The canonical package is the directory containing `SKILL.md` and its relative `references/` files.
 
-**Skill version:** 1.0.1  
+**Skill version:** 1.1.0  
 **Compatibility verified:** 2026-08-06  
 **License:** MIT
 
@@ -33,12 +33,12 @@ Prefer the host's current official installer. Verify paths against current docum
 
 | Host | Supported installation path | Invocation |
 | --- | --- | --- |
-| Claude Code | Install globally with `npx skills add seamas0825-lab/social-media-deep-research -g -a claude-code`, or place the repository at `~/.claude/skills/social-media-deep-research`. | Ask Claude to use the skill or invoke `/social-media-deep-research`. |
-| Codex | Install with `npx skills add seamas0825-lab/social-media-deep-research -g -a codex`, or clone into the active Codex skills directory. | Ask the agent to use `$social-media-deep-research`. |
-| WorkBuddy | Download the GitHub repository as a local skill package, then use **Skills → Add Skill → Upload Skill**. Enable it for the task. | Ask WorkBuddy to use `social-media-deep-research`. |
-| OpenClaw | Run `openclaw skills install git:seamas0825-lab/social-media-deep-research --global`, or place it under a configured OpenClaw skill root. | Ask naturally or invoke `/skill social-media-deep-research`. |
-| Hermes Agent | Run `hermes skills install https://raw.githubusercontent.com/seamas0825-lab/social-media-deep-research/main/SKILL.md`; Hermes also retrieves explicitly referenced support files. | Invoke `/social-media-deep-research` or ask naturally. |
-| Other compatible agents | Use `npx skills add seamas0825-lab/social-media-deep-research -g` when supported, or copy the full directory into the host's documented skill root. | Use the host's natural-language or slash-command mechanism. |
+| Claude Code | Install globally with `npx skills add seamas0825-lab/eliot-social-growth -g -a claude-code`, or place the repository at `~/.claude/skills/eliot-social-growth`. | Ask Claude to use the skill or invoke `/eliot-social-growth`. |
+| Codex | Install with `npx skills add seamas0825-lab/eliot-social-growth -g -a codex`, or clone into the active Codex skills directory. | Ask the agent to use `$eliot-social-growth`. |
+| WorkBuddy | Download the GitHub repository as a local skill package, then use **Skills → Add Skill → Upload Skill**. Enable it for the task. | Ask WorkBuddy to use `eliot-social-growth`. |
+| OpenClaw | Run `openclaw skills install git:seamas0825-lab/eliot-social-growth --global`, or place it under a configured OpenClaw skill root. | Ask naturally or invoke `/skill eliot-social-growth`. |
+| Hermes Agent | Run `hermes skills install https://raw.githubusercontent.com/seamas0825-lab/eliot-social-growth/main/SKILL.md`; Hermes also retrieves explicitly referenced support files. | Invoke `/eliot-social-growth` or ask naturally. |
+| Other compatible agents | Use `npx skills add seamas0825-lab/eliot-social-growth -g` when supported, or copy the full directory into the host's documented skill root. | Use the host's natural-language or slash-command mechanism. |
 
 Sources:
 
@@ -76,13 +76,13 @@ Use the current upstream instructions. The expected baseline is:
 3. Install Node.js 22 or newer for Web Access.
 4. Use Chrome or Edge. Open `chrome://inspect/#remote-debugging` or `edge://inspect/#remote-debugging` and enable remote debugging for the intended browser instance.
 5. Sign in to required sites manually. Never place passwords, cookies, session exports, recovery codes, or one-time codes in the skill.
-6. Test observation, navigation, input, screenshot or readback, and manual handoff before starting a long research branch.
+6. Run the adapter smoke test and [mandatory browser capability gate](browser-capability-gate.md) before starting any authenticated or dynamic branch.
 
 Browser Use and Web Access are complementary capabilities, not an implied automatic integration. Follow each project's current setup and expose their tools through the host agent before relying on them.
 
 ## Smoke tests
 
-Run from the skill root before a long authenticated research job:
+Run from the skill root before every authenticated or dynamic research job:
 
 ```bash
 python3 scripts/run_smoke_tests.py --adapter ego
@@ -92,7 +92,15 @@ python3 scripts/run_smoke_tests.py --adapter web-access \
   --launch-chrome
 ```
 
-The runner writes a JSON record under `test-results/` with the date, platform, adapter/tool version, duration, status, and redacted output. A public-page pass proves only that the adapter can start, navigate, read back, and clean up in the tested environment. It does not prove authenticated-site reliability.
+The runner writes a JSON record under `test-results/` with the date, platform, adapter/tool version, duration, status, redacted output, and parsed capability details when available. Then run the gate against the capabilities required by the branch. A public-page pass does not prove authenticated-site reliability or a target service's current editor surface.
+
+```bash
+python3 scripts/browser_capability_gate.py test-results/smoke-YYYY-MM-DD.json \
+  --adapter ego --require navigation --require semantic_snapshot \
+  --require dom_evaluation --require textarea_input --require contenteditable_input
+```
+
+After the adapter gate, perform the target service's disposable write/readback/clear probe described in [browser-capability-gate.md](browser-capability-gate.md).
 
 Smoke tests use `https://example.com`, temporary browser profiles where applicable, and no login data. Read [browser-security.md](browser-security.md) before extending them.
 

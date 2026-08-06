@@ -20,6 +20,12 @@ Failures are evidence about access and confidence. Do not hide them by substitut
 
 **Response:** do not bypass the control. Request user handoff when allowed, try an official API or authoritative public source, or exclude the branch. Record the blocked URL, date, and resulting evidence gap.
 
+## A page value cannot be verified
+
+**Signal:** an animated counter, canvas rendering, delayed value, inaccessible Discord/App Store surface, account/region state, or selector drift prevents stable readback.
+
+**Response:** follow [evidence-access-gaps.md](evidence-access-gaps.md), attempt two stable readbacks and allowed first-party fallbacks, then complete [../templates/evidence-access-gap.md](../templates/evidence-access-gap.md). Never treat missing data as zero or estimate a precise value. Exclude the value when it remains unverifiable.
+
 ## A web-AI citation cannot be opened
 
 **Signal:** the citation is missing, broken, inaccessible, unrelated, or does not support the generated claim.

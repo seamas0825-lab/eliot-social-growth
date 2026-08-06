@@ -32,12 +32,13 @@ For every selected adapter, record `verified date`, `verified capability`, `know
 ## Select and operate the browser adapter
 
 1. Read [platform-compatibility.md](platform-compatibility.md) and select the operating-system path before acting.
-2. On macOS, read and follow the `ego-browser` skill. Create one isolated EGO task space for the research goal and reuse it across rounds so authenticated state is available without disturbing normal browser tabs.
-3. On Windows, require Browser Use plus the `eze-is/web-access` skill. Follow their current setup instructions, connect only to the intended Chrome or Edge instance, and verify every meaningful action with fresh page state. Do not imitate EGO helper names when the host exposes different tools.
-4. Open only the services selected for the branch. Inspect the page state before acting and confirm the visible account, model, mode, and research feature.
-5. Switch accounts only through an already available account chooser and only when the target account is specified by the user. Never type or expose passwords, recovery codes, one-time codes, API keys, or other secrets.
-6. If login, CAPTCHA, 2FA, payment, consent, or a sensitive account choice requires the user, hand browser control to the user and state the exact action needed. Resume only after explicit confirmation.
-7. Keep scratch tabs under control. At completion, retain only pages the user explicitly needs to see; otherwise close the agent-owned browser session or task space according to the active browser adapter.
+2. Pass [browser-capability-gate.md](browser-capability-gate.md) before opening a research conversation. Do not rely on documentation, helper registries, a prior run, or a fixed editor selector.
+3. On macOS, read and follow the `ego-browser` skill. Create one isolated EGO task space for the research goal and reuse it across rounds so authenticated state is available without disturbing normal browser tabs.
+4. On Windows, require Browser Use plus the `eze-is/web-access` skill. Follow their current setup instructions, connect only to the intended Chrome or Edge instance, and verify every meaningful action with fresh page state. Do not imitate EGO helper names when the host exposes different tools.
+5. Open only the services selected for the branch. Discover the live visible editor, disposable-write/readback/clear it, then confirm the visible account, model, mode, and research feature before submitting the real prompt.
+6. Switch accounts only through an already available account chooser and only when the target account is specified by the user. Never type or expose passwords, recovery codes, one-time codes, API keys, or other secrets.
+7. If login, CAPTCHA, 2FA, payment, consent, or a sensitive account choice requires the user, hand browser control to the user and state the exact action needed. Resume only after explicit confirmation.
+8. Keep scratch tabs under control. At completion, retain only pages the user explicitly needs to see; otherwise close the agent-owned browser session or task space according to the active browser adapter.
 
 ## Use a multi-round conversation protocol
 
@@ -92,3 +93,7 @@ Included or excluded, with reason:
 ```
 
 Exclude the branch from evidence if direct sources cannot be recovered. It may remain as a labeled hypothesis for a future experiment.
+
+## Pass the cross-service convergence gate
+
+When two or more AI services were used, fill [../templates/multi-ai-convergence.md](../templates/multi-ai-convergence.md) before strategy selection. Register each branch, map claims to original source URLs, deduplicate shared sources, preserve conflicts, and classify claims as verified consensus, verified divergence, unverified consensus, or single-branch leads. Model agreement without independent verified sources cannot raise a claim above hypothesis status.

@@ -39,9 +39,9 @@ Skip or shrink AI research when:
 - the question depends mainly on taste, responsibility, or consent;
 - the available AI cannot expose traceable sources.
 
-## Pre-mortem Belief Protocol
+## Mandatory Pre-mortem Belief Gate
 
-Run this for every first-order strategic belief:
+Run this **before** every first-order strategic commitment: P0/primary channel, ICP, positioning wedge, launch narrative, comparison set, material budget allocation, brand-defining mode, costly production system, or cultural/privacy/legal claim. An unaudited belief cannot support a final recommendation.
 
 ```text
 Working belief:
@@ -53,7 +53,12 @@ Retrieval or sampling limit:
 Evidence that would reverse the decision:
 What remains true or useful if the belief is false:
 Decision: retain / narrow / test / reject
+Gate: PASS / PROVISIONAL-TEST / BLOCKED
 ```
+
+- **PASS** requires supporting evidence, the strongest disconfirming evidence, an alternative explanation, retrieval/access/language limits, a reversal condition, and the residual decision.
+- **PROVISIONAL-TEST** is allowed only for a reversible, bounded experiment. It cannot be described as validated strategy.
+- **BLOCKED** prevents the commitment until evidence, scope, or user direction changes.
 
 Audit both the conclusion and the path that produced it:
 
@@ -77,3 +82,5 @@ Stop research when the next decision is clear and remaining uncertainty is cheap
 - human judgment still required.
 
 Do not hide disagreement by averaging conflicting sources. Decide whether the conflict changes the decision, narrows the claim, or becomes an experiment variable.
+
+When two or more AI services were used, complete [../templates/multi-ai-convergence.md](../templates/multi-ai-convergence.md) first. Deduplicate shared sources: four systems repeating one URL are one evidence path, not four votes. Unverified agreement remains a lead.
