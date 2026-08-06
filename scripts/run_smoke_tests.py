@@ -36,6 +36,17 @@ def version(command, fallback="unknown"):
         return fallback
 
 
+def parsed_payload(text):
+    for line in reversed((text or "").splitlines()):
+        line = line.strip()
+        if line.startswith("{") and line.endswith("}"):
+            try:
+                return json.loads(line)
+            except json.JSONDecodeError:
+                continue
+    return None
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--adapter", action="append", choices=["ego", "browser-use", "web-access"], required=True)
@@ -80,6 +91,7 @@ def main():
                 "duration_seconds": duration,
                 "stdout": stdout,
                 "stderr": stderr,
+                "details": parsed_payload(result.stdout),
             })
         except Exception as exc:
             records.append({"adapter": adapter, "tool_version": tool_version, "status": "error", "error": str(exc)})
@@ -93,7 +105,7 @@ def main():
         "python": platform.python_version(),
         "results": records,
         "passed": all(item["status"] == "pass" for item in records),
-        "scope": "Public-page startup, navigation, readback, and cleanup only; authenticated reliability is not implied.",
+        "scope": "Public-page runtime capability probe and cleanup only; target-service editors and authenticated reliability require a separate live gate.",
     }
     output = Path(args.output) if args.output else ROOT / "test-results" / f"smoke-{now.date().isoformat()}.json"
     output.parent.mkdir(parents=True, exist_ok=True)
