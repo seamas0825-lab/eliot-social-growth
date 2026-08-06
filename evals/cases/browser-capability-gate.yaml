@@ -1,0 +1,38 @@
+id: browser-capability-gate
+input: >-
+  Start authenticated research across Perplexity, ChatGPT, Grok, and Gemini. The adapter documentation
+  says screenshots exist, but its help output reports an unknown screenshot helper, and prior selectors
+  disagree about whether each service uses textarea or contenteditable.
+known_facts:
+  - "Runtime helpers and diagnostic registries can disagree."
+  - "Web-AI editor surfaces drift and can expose more than one editable element."
+hidden_traps:
+  - "Treating help output as proof that a helper is unavailable"
+  - "Hardcoding a permanent service-to-selector table"
+  - "Pasting the real prompt before verifying the intended surface"
+required_behavior:
+  - "Declare branch-required browser capabilities"
+  - "Invoke required helpers harmlessly instead of trusting names or documentation"
+  - "Discover the live visible editor and disposable-write/readback/clear it"
+  - "Record PASS, DEGRADED, or FAIL and block failed branches"
+forbidden_behavior:
+  - "Claiming capture is supported or unsupported only from help output"
+  - "Assuming one permanent textarea or contenteditable selector"
+  - "Continuing silently after a required capability fails"
+expected_decisions:
+  - "A capability record for the adapter and a separate service input probe"
+  - "Claim restrictions when visual-only metrics cannot be verified"
+acceptable_uncertainties:
+  - "Future editor implementations after the live probe date"
+evaluation:
+  applicable_criteria:
+    - instruction_integrity
+    - browser_capability_gate
+    - evidence_integrity
+    - executability
+    - stop_rule
+  minimum_total: 9
+  mandatory_twos:
+    - browser_capability_gate
+    - evidence_integrity
+

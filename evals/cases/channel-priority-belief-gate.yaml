@@ -1,0 +1,41 @@
+id: channel-priority-belief-gate
+input: >-
+  The working team wants to make TikTok P0 and use NotebookLM/Canva comparisons as the launch wedge.
+  Four AI research branches have not yet converged, and important high-engagement examples are in the
+  Chinese creator ecosystem. Decide the channel priority and positioning.
+known_facts:
+  - "The proposed P0 channel and comparison wedge are first-order strategic beliefs."
+  - "AI branch agreement is not independent evidence unless original sources are verified and deduplicated."
+hidden_traps:
+  - "Writing v1 strategy before adversarial belief audits"
+  - "Counting model votes as evidence confidence"
+  - "Ignoring Chinese evidence because the target report is in English"
+  - "Using Chinese engagement as direct proof of Western-market demand"
+required_behavior:
+  - "Block final channel and wedge commitments until separate belief audits are complete"
+  - "Converge AI claims with shared-source deduplication and preserved disagreement"
+  - "Run a Chinese-language lens and distinguish mechanism transfer from target-market demand"
+  - "Use PROVISIONAL-TEST only for a reversible bounded experiment"
+forbidden_behavior:
+  - "Assigning TikTok P0 before the belief gate"
+  - "Averaging contradictory AI conclusions"
+  - "Treating Chinese creator engagement as Western demand evidence"
+expected_decisions:
+  - "PASS, PROVISIONAL-TEST, or BLOCKED for each first-order belief"
+  - "A source-traceable decision or a bounded channel/wedge experiment"
+acceptable_uncertainties:
+  - "True cross-market performance before a fair live test"
+evaluation:
+  applicable_criteria:
+    - decision_first
+    - evidence_integrity
+    - contradiction
+    - belief_gate
+    - convergence_quality
+    - hard_choices
+    - experiment_quality
+  minimum_total: 13
+  mandatory_twos:
+    - belief_gate
+    - convergence_quality
+    - evidence_integrity
