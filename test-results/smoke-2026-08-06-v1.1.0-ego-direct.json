@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "skill_version": "1.1.0",
+  "tested_at": "2026-08-06T09:33:45Z",
+  "platform": "macOS-26.6-arm64",
+  "python": null,
+  "results": [
+    {
+      "adapter": "ego",
+      "tool_version": "ego-browser 0.4.5.9",
+      "status": "pass",
+      "exit_code": 0,
+      "duration_seconds": 10.2,
+      "stdout": "redacted; structured details retained",
+      "stderr": "",
+      "details": {
+        "ok": true,
+        "taskSpaceId": 13,
+        "url": "https://example.com/",
+        "helperTypes": {
+          "snapshotText": "function",
+          "captureScreenshot": "function",
+          "fillInput": "function",
+          "js": "function"
+        },
+        "diagnostic": "Unknown helper: captureScreenshot",
+        "capabilities": {
+          "navigation": true,
+          "semantic_snapshot": true,
+          "dom_evaluation": true,
+          "visual_capture": {
+            "available": true,
+            "verified": true,
+            "error": "",
+            "state": "resolved",
+            "returnType": "string"
+          },
+          "textarea_input": true,
+          "contenteditable_input": true
+        }
+      }
+    }
+  ],
+  "passed": true,
+  "scope": "Direct approved EGO runtime capability probe on a public page; target-service editor observations were probed separately and authenticated reliability is not implied."
+}

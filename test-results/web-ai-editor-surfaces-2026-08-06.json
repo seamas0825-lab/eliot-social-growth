@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "skill_version": "1.1.0",
+  "tested_at": "2026-08-06",
+  "adapter": "ego-browser 0.4.5.9",
+  "task_space_id": 13,
+  "scope": "Live visible editor discovery only; no prompts or sensitive data submitted.",
+  "services": [
+    {
+      "service": "Perplexity",
+      "visible_textarea": false,
+      "visible_contenteditable": true,
+      "observed_editor": "DIV#ask-input role=textbox"
+    },
+    {
+      "service": "ChatGPT",
+      "visible_textarea": false,
+      "visible_contenteditable": true,
+      "observed_editor": "DIV#prompt-textarea role=textbox"
+    },
+    {
+      "service": "Grok",
+      "visible_textarea": true,
+      "visible_contenteditable": true,
+      "observed_editor": "multiple visible editable surfaces; intended surface requires write/readback/clear verification"
+    },
+    {
+      "service": "Gemini",
+      "visible_textarea": false,
+      "visible_contenteditable": true,
+      "observed_editor": "visible DIV role=textbox"
+    }
+  ],
+  "conclusion": "These values are dated observations, not permanent selectors. Every substantial run must rediscover the visible editor and pass a disposable write/readback/clear probe."
+}
