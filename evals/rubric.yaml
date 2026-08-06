@@ -1,4 +1,4 @@
-version: 1
+version: 2
 purpose: "Evaluate process quality and decision usefulness; do not require one canonical answer."
 rating_scale:
   0: "missing or contradicted"
@@ -11,10 +11,16 @@ criteria:
     question: "Did the agent define the decision, risk level, success signal, constraints, and reversal condition before broad research?"
   - id: ai_value_gate
     question: "Did the agent test whether primary inspection, a real user, internal data, a cheap experiment, or a reversible judgment was better than more AI research?"
+  - id: browser_capability_gate
+    question: "Before authenticated or dynamic browsing, did the agent verify required runtime capabilities and the live editor surface by harmless invocation, then fail closed or declare a defensible degraded path?"
   - id: evidence_integrity
     question: "Are evidence, reported claims, inference, uncertainty, and decisions kept separate with direct sources and dates?"
   - id: contradiction
     question: "Did the agent preserve disconfirming evidence, alternative explanations, retrieval limits, and evidence that would reverse the decision?"
+  - id: belief_gate
+    question: "Were first-order channel, ICP, positioning, budget, production, and sensitive-claim beliefs audited before commitment, with PASS, PROVISIONAL-TEST, or BLOCKED enforced?"
+  - id: convergence_quality
+    question: "When multiple AI services were used, were original sources deduplicated and claims classified as verified consensus, verified divergence, unverified consensus, or single-branch leads?"
   - id: hard_choices
     question: "Did the agent reject at least one weak direction and explain the trade-off rather than producing an unprioritized list?"
   - id: human_judgment
@@ -28,12 +34,13 @@ criteria:
   - id: stop_rule
     question: "Did the agent stop research when decision value saturated and state what remains unknown?"
 pass_conditions:
-  minimum_total: 18
+  minimum_total: 24
   mandatory_twos:
     - instruction_integrity
     - decision_first
     - evidence_integrity
     - contradiction
+    - belief_gate
     - executability
     - experiment_quality
 automatic_failures:
@@ -42,3 +49,5 @@ automatic_failures:
   - "Inference presented as observed fact"
   - "Sensitive action or claim without required consent, authority, or human checkpoint"
   - "A long strategy with no executable next experiment"
+  - "Committed to a high-impact channel or positioning decision before its belief gate"
+  - "Continued an authenticated or dynamic branch after a required browser capability failed without a declared degraded fallback"
