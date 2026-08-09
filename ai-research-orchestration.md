@@ -2,19 +2,15 @@
 
 Use this reference only when authenticated AI services can materially improve a social-media research decision. AI output creates leads, hypotheses, clusters, and critiques; it does not become evidence until checked against an original or authoritative source.
 
+## Let the user choose optional AI branches
+
+After assessing the task, present a compact menu of useful services and the distinct job each would own. Recommend the smallest service set, but let the user select or decline Grok, Gemini, Perplexity, ChatGPT, DeepSeek, Doubao, Kimi, Qwen, Zhipu Qingyan, or another visible service. Do not open unselected services.
+
+For every selected web AI, remind the user once that the account must already be logged in inside the controlled browser. If the visible account is already authenticated, record it and skip the reminder. Never request credentials. Record `selected_by_user`, assigned job, verified account, actual model/mode, and fallback.
+
+Use [references/ai-service-prompt-templates.md](references/ai-service-prompt-templates.md) for DeepSeek, Doubao, Kimi, Qwen, and Zhipu Qingyan. Treat model names and features as unstable runtime facts; verify the visible selection immediately before prompt submission.
+
 ## Match capability before service
-
-### Browser AI is a real entry path
-
-Do not require an MCP server, API connector, or a special AI tool to consider
-the AI branch. On macOS, EGO Browser is the preferred adapter for web AI. When
-the browser capability gate is `PASS` or a named `DEGRADED` path remains
-defensible, record `entry_path: ego_browser`, verify the actual service editor,
-and use an isolated EGO task space. A missing connector means only that the
-connector path is unavailable; it does not mean Gemini, ChatGPT, Grok,
-Perplexity, or another browser-visible service is unavailable. If the browser
-gate fails, record the failure and fallback instead of silently converting it
-into `no_ai`.
 
 Select the smallest useful capability set before naming any vendor:
 
@@ -39,17 +35,14 @@ Then select a current adapter. Service mappings are runtime hypotheses, not syst
 | ChatGPT | Adversarial review, belief audit, prioritization, structured synthesis | Supply evidence rather than relying on recollection; fall back to another reasoning adapter or an explicit manual audit |
 | Doubao, DeepSeek, ChatGLM, Qwen, or Kimi | Chinese-language, multilingual, long-context, or structured reasoning branches | Verify the exact current feature and source access; use original-language sources and another adapter when traceability is weak |
 
-For every selected adapter, record `verified date`, `verified capability`, `known limitation`, and `fallback` in run state. Do not ask multiple systems the same generic question. A valid multi-tool plan names the distinct decision or uncertainty owned by every branch.
+When the direct or analogous comparison set remains weak after independent reasoning, use Perplexity as a bounded discovery branch. Prefer Kimi K3 Thinking when visibly available and source-capable, record the actual model/mode, and use the competitor-discovery prompt in [references/ai-prompt-quality.md](references/ai-prompt-quality.md). Never let Perplexity decide competitor status from superficial similarity; the main agent must open and classify official profiles and original posts.
 
-Record internal product or performance access separately from AI access. The
-internal branch may be `user_not_provided` or `unavailable` when Insights,
-CRM, DM, or analytics data cannot be shared; that status does not change the
-browser AI entry path or the AI value decision.
+For every selected adapter, record `verified date`, `verified capability`, `known limitation`, and `fallback` in run state. Do not ask multiple systems the same generic question. A valid multi-tool plan names the distinct decision or uncertainty owned by every branch.
 
 ## Select and operate the browser adapter
 
 1. Read [platform-compatibility.md](platform-compatibility.md) and select the operating-system path before acting.
-2. Pass [browser-capability-gate.md](browser-capability-gate.md) before opening a research conversation. Do not rely on documentation, helper registries, a prior run, or a fixed editor selector.
+2. Pass [references/browser-capability-gate.md](references/browser-capability-gate.md) before opening a research conversation. Do not rely on documentation, helper registries, a prior run, or a fixed editor selector.
 3. On macOS, read and follow the `ego-browser` skill. Create one isolated EGO task space for the research goal and reuse it across rounds so authenticated state is available without disturbing normal browser tabs.
 4. On Windows, require Browser Use plus the `eze-is/web-access` skill. Follow their current setup instructions, connect only to the intended Chrome or Edge instance, and verify every meaningful action with fresh page state. Do not imitate EGO helper names when the host exposes different tools.
 5. Open only the services selected for the branch. Discover the live visible editor, disposable-write/readback/clear it, then confirm the visible account, model, mode, and research feature before submitting the real prompt.
@@ -59,7 +52,7 @@ browser AI entry path or the AI value decision.
 
 ## Use a multi-round conversation protocol
 
-Read [ai-prompt-quality.md](ai-prompt-quality.md) and pass the prompt quality gate before submission. Give each service a compact research brief containing the product, official URLs, verified product facts, decision, audience, market, time window, constraints, known evidence, and assigned branch. Then use these rounds:
+Read [references/ai-prompt-quality.md](references/ai-prompt-quality.md) and pass the prompt quality gate before submission. Give each service a compact research brief containing the product, official URLs, verified product facts, decision, audience, market, time window, constraints, known evidence, and assigned branch. Then use these rounds:
 
 1. **Discovery:** Ask the bounded question and request direct source URLs, publication or observation dates, and claim-level confidence.
 2. **Interrogation:** Ask which important evidence is missing, what would falsify the initial synthesis, and which findings are observation versus inference.
@@ -130,4 +123,4 @@ Exclude the branch from evidence if direct sources cannot be recovered. It may r
 
 ## Pass the cross-service convergence gate
 
-When two or more AI services were used, fill [../templates/multi-ai-convergence.md](../templates/multi-ai-convergence.md) before strategy selection. Register each branch, map claims to original source URLs, deduplicate shared sources, preserve conflicts, and classify claims as verified consensus, verified divergence, unverified consensus, or single-branch leads. Model agreement without independent verified sources cannot raise a claim above hypothesis status.
+When two or more AI services were used, fill [templates/multi-ai-convergence.md](templates/multi-ai-convergence.md) before strategy selection. Register each branch, map claims to original source URLs, deduplicate shared sources, preserve conflicts, and classify claims as verified consensus, verified divergence, unverified consensus, or single-branch leads. Model agreement without independent verified sources cannot raise a claim above hypothesis status.

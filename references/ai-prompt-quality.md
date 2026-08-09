@@ -8,6 +8,7 @@ Use this reference before submitting any prompt to a web AI service. Compile pro
 - [Prompt packet](#prompt-packet)
 - [Grok template](#grok-template)
 - [Perplexity template](#perplexity-template)
+- [Perplexity competitor-discovery template](#perplexity-competitor-discovery-template)
 - [Gemini Deep Research template](#gemini-deep-research-template)
 - [ChatGPT templates](#chatgpt-templates)
 - [Belief audit round](#belief-audit-round)
@@ -97,6 +98,29 @@ For every material theme provide 2-4 direct Reddit thread or comment URLs, dates
 ```
 
 Never accept “Reddit users think” without multiple relevant threads or an explicit single-thread limitation.
+
+## Perplexity competitor-discovery template
+
+Use only after independently reasoning from the verified brand, audience, offer, geography, platform, and business model. Use it to repair a weak comparison set, not to outsource comparison judgment. Prefer **Kimi K3 Thinking** when it is visibly available and suitable; verify and record the actual model/mode because availability changes.
+
+```text
+Act as a source-linked competitor and analogous-account discovery analyst for [BRAND/ACCOUNT and OFFICIAL URLS].
+
+Verified subject facts: [OFFER, BUSINESS MODEL, AUDIENCE, GEOGRAPHY, PRICE/DELIVERY MODEL, TARGET SOCIAL PLATFORMS].
+Decision: [WHICH CONTENT/POSITIONING/CHANNEL DECISION THIS SET CAN CHANGE].
+Time window: [DATES].
+
+Find:
+1. [N] direct competitors sharing the same buyer, category, offer, geography, or business model;
+2. [N] adjacent accounts with partial audience or product overlap;
+3. [N] cross-category analogues using the same trust, proof, search-utility, identity, or participation mechanism.
+
+For each return: name; classification; exact basis for classification; official website; original social profile; 2–3 current original-post URLs; date; visible labelled metrics when available; first line/frame; proof and CTA mechanism; likely follow reason; access limitation; why it can change the decision. Include at least one weak or contradictory case.
+
+Do not classify by visual similarity alone. Do not treat listicles, snippets, mirrors, or AI descriptions as evidence. Mark every result original-opened, authoritative, lead-only, or blocked. Do not invent metrics, saves, shares, reach, search volume, conversion, or audience prevalence. Round 1: discovery ledger only; no final strategy or calendar.
+```
+
+The main agent must open the official profiles and original posts before accepting a case. If the Perplexity-selected model cannot expose traceable sources, use the result only as lead-only discovery and switch to direct platform inspection.
 
 ## Gemini Deep Research template
 
@@ -191,6 +215,8 @@ For Doubao, DeepSeek, ChatGLM, Qwen, Kimi, or another service, use the same subm
 - domestic market, creator, or community hypotheses.
 
 Require original-language sources when translation could change meaning. Never treat a service's model knowledge as a substitute for current platform evidence.
+
+For reusable identities and full prompt templates for DeepSeek, Doubao, Kimi, Qwen, and Zhipu Qingyan, read [ai-service-prompt-templates.md](ai-service-prompt-templates.md). Verify the visible model, search/research mode, account, and source behavior at runtime.
 
 ## Multi-round control
 

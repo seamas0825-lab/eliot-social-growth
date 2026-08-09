@@ -2,18 +2,22 @@
 
 Use this reference for every substantial Standard or Deep run. Its purpose is to prevent branch loss, context drift, duplicated browsing, and premature strategy writing.
 
-The companion `scripts/workflow_guard.py` is the executable contract for this
-reference. A prose checklist does not count as a gate. The guard must be run
-against the persisted state before browsing, after every branch, before
-convergence, and before delivery; a non-zero exit is a hard stop.
+The companion `scripts/workflow_guard.py` is the executable contract. A prose checklist does not count as a gate. Run it against persisted state before browsing, after every branch, before convergence, before calendar drafting, and before delivery; a non-zero exit is a hard stop.
+
+## Run the startup preflight before scope initialization
+
+1. Detect the operating system and required browser/Skill path from [platform-compatibility.md](platform-compatibility.md). Record present and missing components. Stay silent when everything is available; remind the user only about missing components.
+2. Assess difficulty, risk, platform count, language count, evidence access, and cost of error.
+3. Present Light, Standard, and Deep with task-specific effort and evidence differences. Recommend one and wait for the user's selection unless the request already selected it.
+4. Identify only the social platforms needed for the task. Check visible login state when safe; remind once for relevant platforms that are not logged in. Never request credentials.
+5. Present optional web-AI services with distinct recommended jobs. Let the user select or decline them, then check login only for selected services.
+6. Show the proposed dependency flow and parallel browser plan before broad research.
+
+Persist these outcomes under `preflight`. The Blueprint Gate rejects a missing mode confirmation, browser detection, relevant-platform login decision, or AI-service choice record.
 
 ## Treat run state as the workflow source of truth
 
 Before browsing, copy `schemas/run-state.yaml` into the task workspace and fill the project, workflow, branch inventory, dependencies, fallbacks, and checkpoints. Do not keep the only copy of the plan in conversation memory.
-
-Prefer `workflow_guard.py init` because it creates all branch families and
-marks unresolved fields as `TODO`, which the Blueprint Gate rejects. This makes
-an omitted branch visible instead of allowing an empty checklist to pass.
 
 On every continuation, compaction, handoff, or return from a long-running branch:
 
@@ -21,11 +25,6 @@ On every continuation, compaction, handoff, or return from a long-running branch
 2. Restate the active decision and current stage internally.
 3. Reconcile completed, active, waiting, excluded, and missing branches.
 4. Resume the next dependency-ready branch; do not rebuild the workflow from memory.
-
-If the user changes scope, evidence, audience, constraints, or success signals,
-run `workflow_guard.py reentry` first. That resets the relevant gates and
-blocks strategy and delivery until the revised blueprint is reviewed and
-re-approved.
 
 ## Build the branch blueprint before research
 
@@ -51,7 +50,9 @@ Never leave a candidate branch absent or silently unexecuted.
 | User voice and community | Include when vocabulary, objection, anxiety, or buyer intent could change the decision | Comments, Reddit, forums, reviews, interviews, sales/support language |
 | Authoritative facts | Required when law, policy, safety, technical limits, pricing, or unstable facts affect the claim | First-party or authoritative sources |
 | Internal evidence or one real user | Prefer when it owns conversion, product truth, constraints, or execution reality | Insights, CRM, DMs, interviews, performance data, team capacity |
-| AI research | Include only after the AI Value Gate; EGO Browser is a valid web-AI entry path when its capability gate passes | Bounded source discovery, contradiction, multilingual coverage, long-context synthesis, structured extraction |
+| AI research | Include only after the AI Value Gate | Bounded source discovery, contradiction, multilingual coverage, long-context synthesis, structured extraction |
+
+For `social_content_strategy`, direct competitors, analogous mechanisms, search-intent keywords, and native high-performing cases are mandatory included families. Evidence access may degrade a branch, but the branch cannot silently disappear or be replaced by generic model knowledge.
 
 For every included branch record:
 
@@ -77,8 +78,9 @@ When the task concerns content, discovery, positioning, or trends, create a boun
 2. Generate query families from desired progress, anxieties, objections, alternatives, geography, product/category terms, and native platform vocabulary.
 3. Translate only after identifying the evidence language; preserve original-language queries.
 4. Probe a small set through search-engine discovery, platform-native search/autocomplete/hashtags, and community language where available.
-5. Use validated queries to find original high-performing social cases. Open each original post and record query, URL, date, account context, first frame/line, visible metrics, comments, and access limits.
-6. Call a case `high-performing` only relative to observable account or comparable context. Do not invent an absolute viral threshold or infer saves, shares, reach, or conversion from unlabeled values.
+5. Probe at least one relevant supplemental social platform when access permits—for example TikTok for an Instagram plan or YouTube/Reddit for tutorial and objection language. Keep target and supplemental results separate.
+6. Use validated queries to find original high-performing social cases. Open each original post and record query, URL, date, account context, first frame/line, visible metrics, comments, and access limits.
+7. Call a case `high-performing` only relative to observable account or comparable context. Do not invent an absolute viral threshold or infer saves, shares, reach, conversion, or target-platform demand from cross-platform attention.
 
 Stop expanding keywords when new queries repeat the same mechanisms or cannot change the experiment.
 
@@ -95,7 +97,21 @@ Before browsing, group branches into:
 
 When the host supports concurrency, give each independent branch its own EGO task space, tab set, owner, and stable ID. Never let two agents control the same task space. When concurrency is unavailable, round-robin across preserved task spaces instead of reopening or duplicating work.
 
-Use a two-wave default for content and positioning work. Wave 1 is the sequential brand baseline: official website/product when permitted, official social accounts, and target-native account behavior. After their Branch-Exit Gates pass, Wave 2 may open three independent EGO subtasks when no dependency exists: (1) direct competitors plus analogous mechanisms, (2) bounded multi-AI research, and (3) behavioral keyword families traced to native-platform performance. Each subtask gets its own task space, tab set, owner, and stable ID; convergence remains sequential. If a dependency or rate limit makes the wave unsafe, record `sequential_dependency` and run it round-robin instead. Keep authentication handoffs, sensitive actions, belief convergence, and final strategy selection sequential.
+Before every research wave, run `workflow_guard.py audit`. When the audit identifies two or more dependency-ready, account-safe branches, either parallelize them in separate task spaces or record why shared authentication, rate limits, or a sequential dependency makes parallelism unsafe. Re-run the audit after each branch, user update, external-job return, and before convergence/delivery.
+
+Use a two-wave default. Wave 1 is the sequential official brand/account/native baseline. Wave 2 may run three independent EGO task spaces when safe: (1) direct competitors plus analogous mechanisms, (2) user-selected bounded AI services, and (3) keyword families traced to target-native and supplemental-platform performance. Keep authentication handoffs, sensitive actions, belief convergence, and final strategy selection sequential.
+
+## Lock social content calendars behind the research contract
+
+Before writing a final social content calendar, complete and record all five artifacts:
+
+1. **Competitor data:** direct/adjacent account basis, original profiles/posts, dates, visible labelled metrics, mechanisms, and comparison limitations.
+2. **Keyword psychology:** audience role, decision situation, desired progress, anxiety/objection, and query family.
+3. **Keyword-to-native performance:** query-to-original-post path on the target platform, plus a relevant supplemental-platform probe or explicit degraded access record.
+4. **Evidence limitations:** inaccessible metrics, private analytics, personalization, language transfer, sample bias, account-relative comparison, and high-risk factual claims.
+5. **Research-to-calendar change log:** each material finding mapped to the topics, openings, proof, formats, CTA, cadence, or measurement it will change.
+
+Set the five `content_strategy_contract` flags and artifact paths, pass the Pre-Convergence Completeness Gate, then run `workflow_guard.py assert --action calendar`. Do not draft the final calendar from a partial branch, search snippets, or AI prose.
 
 ## Pass four workflow integrity checkpoints
 
@@ -111,12 +127,6 @@ Before broad research:
 
 If any included branch omits one of these fields, the Blueprint Gate is `FAIL`; do not start broad browsing. A branch-name list or generic research checklist is not a valid blueprint.
 
-Record the review explicitly with `workflow_guard.py approve --what blueprint`,
-then run `workflow_guard.py gate --gate blueprint` and
-`workflow_guard.py assert --action research`. The commands must return success
-before dynamic browsing, branch exclusion, or a prose decision-value conclusion
-starts. Pending AI access must be described as pending, never as `no_ai`.
-
 ### Checkpoint 2: Branch-exit gate
 
 After every branch:
@@ -127,15 +137,8 @@ After every branch:
 - audit the blueprint for newly missing or obsolete work.
 
 Do not start strategy drafting merely because one productive branch finished.
-Run `workflow_guard.py gate --gate branch-exit --branch BRANCH_ID` for each
-included branch. A completed branch without a passing exit gate is still
-incomplete.
 
-After the official baseline branch exits pass, run
-`workflow_guard.py gate --gate brand-baseline`. Then run
-`workflow_guard.py assert --action parallel-research` before opening the three
-post-baseline EGO subtasks. If the host exposes concurrency, the guard requires
-one stable task-space ID per active subtask.
+Run `workflow_guard.py gate --gate branch-exit --branch BRANCH_ID`, then `workflow_guard.py audit`.
 
 ### Checkpoint 3: Pre-convergence completeness gate
 
@@ -149,10 +152,7 @@ Before belief audit or strategy selection:
 
 If a branch was forgotten, reopen it. If it no longer has decision value, exclude it explicitly. Do not silently skip it.
 
-Run `workflow_guard.py gate --gate pre-convergence` before belief audit,
-strategy selection, or calendar drafting. This command checks the branch
-ledger, keyword-to-case path, AI decision/convergence, external-job states,
-and branch exit gates together.
+Run `workflow_guard.py gate --gate pre-convergence`. For a social content calendar, this gate also checks the cross-platform probe and five contract artifacts. Run `workflow_guard.py assert --action calendar` immediately before drafting.
 
 ### Checkpoint 4: Pre-delivery gate
 
@@ -163,10 +163,7 @@ Before final delivery:
 - created artifacts and external links are verified;
 - run state contains no active or unexplained planned branch.
 
-Run `workflow_guard.py gate --gate pre-delivery` and then
-`workflow_guard.py assert --action delivery` immediately before final output.
-The same `assert` command with `--action strategy` is required immediately
-before writing a strategy or content calendar.
+Run `workflow_guard.py audit`, `workflow_guard.py gate --gate pre-delivery`, and `workflow_guard.py assert --action delivery` immediately before final output.
 
 ## Use the branch ledger to control scope, not inflate it
 

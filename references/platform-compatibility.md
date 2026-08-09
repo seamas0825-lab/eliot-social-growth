@@ -2,8 +2,8 @@
 
 Use this reference to install and run the skill across Agent Skills-compatible hosts and operating systems. The canonical package is the directory containing `SKILL.md` and its relative `references/` files.
 
-**Skill version:** 1.2.0  
-**Compatibility verified:** 2026-08-06  
+**Skill version:** 1.4.0
+**Compatibility verified:** 2026-08-10
 **License:** MIT
 
 ## Contents
@@ -11,6 +11,7 @@ Use this reference to install and run the skill across Agent Skills-compatible h
 - [Open Agent Skills format](#open-agent-skills-format)
 - [Host installation](#host-installation)
 - [Browser runtime matrix](#browser-runtime-matrix)
+- [Silent startup detection](#silent-startup-detection)
 - [Windows setup](#windows-setup)
 - [Smoke tests](#smoke-tests)
 - [Capability adaptation](#capability-adaptation)
@@ -56,6 +57,20 @@ Sources:
 | macOS | EGO Browser plus the `ego-browser` skill | EGO 0.4.5.9 skill runtime; public-page navigation and readback smoke test. | Preferred. Use isolated task spaces, inherited login state, explicit handoff, and readback verification. |
 | Windows | Browser Use plus `eze-is/web-access` | Adapter smoke passed with Browser Use 0.13.7 and Web Access commit `7af34af` on 2026-08-06. This validates both adapter APIs, not Windows host behavior; run the same tests on the target Windows machine. | Supported fallback. Expect more setup variance and lower reliability on complex authenticated sites than macOS plus EGO. Use smaller action batches and verify after every meaningful interaction. |
 | Linux or another host | A browser adapter with observation, interaction, authenticated state, user handoff, and verification | Host-specific smoke test required. | Proceed only when the adapter exposes the required capabilities. Otherwise use open-web sources and label evidence gaps. |
+
+## Silent startup detection
+
+Run this check before presenting the mode choices or formally initializing research state:
+
+1. Detect the operating system from the host environment.
+2. Inspect the available Skill/tool catalog instead of assuming installation from documentation.
+3. On macOS, require EGO Lite Browser runtime access and the `ego-browser` Skill. The first harmless EGO invocation is the runtime check; do not run redundant `which`, version, or package probes when the EGO Skill says the runtime is ready.
+4. On Windows, require Browser Use, the `eze-is/web-access` Skill, and an intended Chrome/Edge remote-debugging path. Verify each adapter with its supported smoke test.
+5. Record `detected_os`, required components, present components, missing components, and detection date in run state.
+6. If nothing is missing, continue silently. Do not remind the user to install or enable something already present.
+7. If a component is missing, tell the user only what is missing and how to enable/install it. Do not block open-web planning, but block any dynamic/authenticated branch that depends on the missing capability.
+
+After the browser path is available, identify only the social and AI services relevant to the chosen workflow. If a service is visibly logged in, record it and do not remind the user. Otherwise remind once that the user must log in manually; never request credentials or session exports.
 
 EGO resources:
 

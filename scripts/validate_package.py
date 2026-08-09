@@ -24,6 +24,23 @@ def main():
         failures.append("SKILL.md exceeds 500 lines")
     if f"version-{version}-blue" not in readme or f"Current version: **{version}**" not in readme:
         failures.append("README version does not match VERSION")
+    required_files = (
+        "scripts/workflow_guard.py", "scripts/test_workflow_guard.py",
+        "references/ai-service-prompt-templates.md",
+    )
+    for relative in required_files:
+        if not (ROOT / relative).exists():
+            failures.append(f"missing required file: {relative}")
+    for required_phrase in (
+        "assert --action calendar",
+        "competitor_data_complete",
+        "research_to_calendar_change_log_complete",
+        "browser_runtime_probe_status",
+        "browser_runtime_probe_evidence",
+    ):
+        combined = skill + (ROOT / "scripts/workflow_guard.py").read_text(encoding="utf-8")
+        if required_phrase not in combined:
+            failures.append(f"missing fail-closed calendar contract: {required_phrase}")
 
     for path in ROOT.rglob("*.md"):
         text = path.read_text(encoding="utf-8")

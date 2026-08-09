@@ -1,6 +1,7 @@
 version: 2
 project:
   name: ""
+  task_type: "general | social_research | social_content_strategy"
   decision: ""
   decision_risk: "reversible | costly_reversible | hard_to_reverse"
   decision_owner: ""
@@ -10,18 +11,52 @@ project:
   observation_window: ""
 
 workflow:
+  mode: "Light | Standard | Deep"
   current_stage: "scope | blueprint | research | pre_convergence | belief_audit | strategy | experiment | delivery"
   source_of_truth_path: ""
   last_reconciled_at: ""
   reentry_check_completed: false
   checkpoints:
     blueprint_gate: "pending | pass | fail"
+    brand_baseline_gate: "pending | pass | fail"
     branch_exit_gate_last_branch: ""
     branch_exit_gate_status: "pending | pass | fail"
     pre_convergence_completeness_gate: "pending | pass | fail"
     pre_delivery_gate: "pending | pass | fail"
   forgotten_or_reopened_branches: []
   active_blockers: []
+
+run_control:
+  initialized: false
+  blueprint_reviewed: false
+  reentry_required: false
+  reentry_reason: ""
+  strategy_writing_allowed: false
+  delivery_allowed: false
+  revision: 0
+  last_user_update_at: ""
+
+preflight:
+  detected_os: "macos | windows | linux | other"
+  detection_date: ""
+  required_browser_components: []
+  present_browser_components: []
+  missing_browser_components: []
+  missing_component_reminder_sent: false
+  browser_runtime_probe_status: pending | pass | degraded | fail
+  browser_runtime_probe_evidence: live invocation, adapter result, or detected failure
+  difficulty_assessment: ""
+  recommended_mode: "Light | Standard | Deep"
+  recommendation_reason: ""
+  mode_choice_status: "confirmed | preselected_by_user"
+  relevant_social_platforms: []
+  social_login_status: {}
+  social_login_reminder_status: "not_needed | sent | user_declined_login"
+  recommended_ai_services: []
+  selected_ai_services: []
+  ai_service_choice_status: "confirmed | declined | preselected_by_user | not_applicable"
+  ai_login_status: {}
+  ai_login_reminder_status: "not_needed | sent | user_declined_login"
 
 branch_inventory:
   - family: "official_baseline"
@@ -78,6 +113,26 @@ search_intent:
   open_web_probes: []
   query_to_case_source_ids: []
   repeated_mechanisms_stop_reached: false
+  cross_platform_probe:
+    target_platforms: []
+    supplemental_platforms: []
+    query_families_tested: []
+    query_to_case_source_ids: []
+    status: "pending | complete | degraded | not_applicable"
+    limitation: ""
+
+content_strategy_contract:
+  applicable: false
+  competitor_data_complete: false
+  keyword_psychology_complete: false
+  keyword_to_native_performance_complete: false
+  evidence_limits_complete: false
+  research_to_calendar_change_log_complete: false
+  competitor_artifact_path: ""
+  keyword_psychology_artifact_path: ""
+  keyword_performance_artifact_path: ""
+  evidence_limits_artifact_path: ""
+  research_to_calendar_change_log_path: ""
 
 parallelism:
   adapter: ""
@@ -91,6 +146,14 @@ parallelism:
       start_condition: ""
       convergence_point: ""
       account_or_rate_limit: ""
+      bundle_description: ""
+      subtasks:
+        - id: "subtask-001"
+          label: ""
+          branch_ids: []
+          task_space_ids: []
+          owner_paths: []
+          independence_rule: ""
 
 discovery_attempts:
   - id: "discovery-001"
@@ -125,7 +188,11 @@ ai_value_gate:
   cheap_test_faster: false
   reversible_judgment_safe: false
   ai_value_added: []
-  result: "no_ai | one_bounded_branch | multiple_distinct_branches"
+  result: "pending | no_ai | one_bounded_branch | multiple_distinct_branches"
+  entry_path: "pending | ego_browser | api_connector | open_web_only | unavailable"
+  entry_path_verified: false
+  internal_data_access: "pending | available | user_not_provided | unavailable"
+  internal_data_reason: ""
   reason: ""
 
 browser_capability_gate:

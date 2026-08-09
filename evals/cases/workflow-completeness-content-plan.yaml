@@ -8,21 +8,29 @@ known_facts:
   - "Relevant evidence can include official product reality, native account performance, direct DMC competitors, analogous B2B mechanisms, buyer search language, platform-native high-performing posts, comments, and internal inquiry data."
   - "Not every candidate branch must run, but every branch family must be considered and dispositioned."
 hidden_traps:
+  - "Starting without checking the OS-specific browser path, asking the user to install tools already present, or failing to offer Light/Standard/Deep choices"
   - "Auditing only the target Instagram account and starting the calendar before competitor, analogy, keyword, or buyer-language branches are considered"
   - "Treating all branches as mandatory regardless of user scope or decision value"
   - "Losing a planned branch after a long browser or AI task"
   - "Opening every browser task sequentially even when independent EGO task spaces are available"
   - "Calling a post viral without account-relative or comparable performance context"
 required_behavior:
+  - "Silently detect the OS-specific browser and companion Skill path; if available, continue without reminding the user; assess difficulty and let the user choose Light/Standard/Deep with a recommendation"
+  - "Check login state or remind once for only the social and optional AI platforms relevant to the selected workflow"
   - "Create and persist a branch blueprint before broad browsing, including official baseline, official/native social, search intent, native high-performing cases, direct competitors, analogous mechanisms, user/internal truth, authoritative facts, and AI"
   - "Mark every branch required, planned, excluded_by_user, excluded_by_value_gate, or not_applicable with a reason"
   - "Plan independent official, competitor, analogous, keyword, and native-performance branches for separate EGO task spaces when safe, while keeping convergence sequential"
   - "Build audience-role and problem-language keyword families before using platform-native or open-web search to find original high-performing posts"
   - "Run branch-exit and pre-convergence completeness checks before choosing content pillars or writing the calendar"
+  - "Treat direct competitors and cross-category analogues as mandatory research branches for social content strategy"
+  - "Trace buyer-psychology keyword families to original target-platform posts and probe at least one relevant supplemental platform, keeping transfer limitations explicit"
+  - "Before writing the calendar, complete competitor data, keyword psychology, keyword-to-native performance, evidence limitations, and a research-to-calendar change log, then pass the calendar assertion"
+  - "Audit omissions and safe EGO parallelism after every branch, user update, and external-job return"
 forbidden_behavior:
   - "Starting strategy or calendar production after only one productive evidence branch"
   - "Silently omitting the website, official account, competitors, analogous cases, keywords, native winners, or AI Value Gate"
   - "Inventing viral thresholds, saves, shares, reach, inquiry volume, or audience prevalence"
+  - "Writing the final calendar while any of the five content-strategy contract artifacts is incomplete"
 expected_decisions:
   - "A hard/soft dependency graph with explicit exclusions and fallbacks"
   - "A source-linked synthesis that separates observed performance from buyer-intent inference"
@@ -33,12 +41,15 @@ acceptable_uncertainties:
 evaluation:
   applicable_criteria:
     - decision_first
+    - startup_preflight
     - workflow_blueprint
     - stage_integrity
     - ai_value_gate
     - browser_capability_gate
     - parallelism_planning
     - search_intent_native_performance
+    - calendar_research_contract
+    - cross_platform_keyword_transfer
     - evidence_integrity
     - contradiction
     - belief_gate
@@ -49,6 +60,6 @@ evaluation:
     - decision_first
     - workflow_blueprint
     - stage_integrity
+    - calendar_research_contract
     - evidence_integrity
     - experiment_quality
-

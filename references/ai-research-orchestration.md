@@ -2,6 +2,14 @@
 
 Use this reference only when authenticated AI services can materially improve a social-media research decision. AI output creates leads, hypotheses, clusters, and critiques; it does not become evidence until checked against an original or authoritative source.
 
+## Let the user choose optional AI branches
+
+After assessing the task, present a compact menu of useful services and the distinct job each would own. Recommend the smallest service set, but let the user select or decline Grok, Gemini, Perplexity, ChatGPT, DeepSeek, Doubao, Kimi, Qwen, Zhipu Qingyan, or another visible service. Do not open unselected services.
+
+For every selected web AI, remind the user once that the account must already be logged in inside the controlled browser. If the visible account is already authenticated, record it and skip the reminder. Never request credentials. Record `selected_by_user`, assigned job, verified account, actual model/mode, and fallback.
+
+Use [ai-service-prompt-templates.md](ai-service-prompt-templates.md) for DeepSeek, Doubao, Kimi, Qwen, and Zhipu Qingyan. Treat model names and features as unstable runtime facts; verify the visible selection immediately before prompt submission.
+
 ## Match capability before service
 
 Select the smallest useful capability set before naming any vendor:
@@ -26,6 +34,8 @@ Then select a current adapter. Service mappings are runtime hypotheses, not syst
 | Gemini Deep Research | Deep research and broad source-backed dossiers | Verify Deep Research mode, active account, and completion/export state; fall back to another deep-research adapter or bounded manual branches |
 | ChatGPT | Adversarial review, belief audit, prioritization, structured synthesis | Supply evidence rather than relying on recollection; fall back to another reasoning adapter or an explicit manual audit |
 | Doubao, DeepSeek, ChatGLM, Qwen, or Kimi | Chinese-language, multilingual, long-context, or structured reasoning branches | Verify the exact current feature and source access; use original-language sources and another adapter when traceability is weak |
+
+When the direct or analogous comparison set remains weak after independent reasoning, use Perplexity as a bounded discovery branch. Prefer Kimi K3 Thinking when visibly available and source-capable, record the actual model/mode, and use the competitor-discovery prompt in [ai-prompt-quality.md](ai-prompt-quality.md). Never let Perplexity decide competitor status from superficial similarity; the main agent must open and classify official profiles and original posts.
 
 For every selected adapter, record `verified date`, `verified capability`, `known limitation`, and `fallback` in run state. Do not ask multiple systems the same generic question. A valid multi-tool plan names the distinct decision or uncertainty owned by every branch.
 

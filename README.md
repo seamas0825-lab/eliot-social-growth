@@ -1,6 +1,6 @@
 # Eliot Social Growth
 
-[![Version](https://img.shields.io/badge/version-1.3.2-blue)](https://github.com/seamas0825-lab/eliot-social-growth/releases/tag/v1.3.2)
+[![Version](https://img.shields.io/badge/version-1.4.0-blue)](https://github.com/seamas0825-lab/eliot-social-growth/releases/tag/v1.4.0)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **Created by Eliot（梁一孟）.** An Agent Skills-compatible evidence-to-experiment operating system for social growth. It turns direct user and market evidence into hard strategic choices, repeatable content systems, and measurable experiments while preserving uncertainty, human judgment, and source traceability.
@@ -26,6 +26,8 @@ Choose a run mode:
 | Deep | Reputation-sensitive, regulated, multilingual, or hard-to-reverse work | Auditable multi-source package, checkpoints, evaluation |
 
 The source counts are effort guardrails, not statistical proof thresholds. See [run modes](references/run-modes.md).
+
+Before formal research, the Skill silently detects the OS-specific browser path, assesses task difficulty, presents Light/Standard/Deep with a recommendation, checks only relevant social/AI login states, and shows the proposed workflow. Social content calendars are fail-closed until competitor data, keyword psychology, keyword-to-native performance, evidence limitations, and a research-to-calendar change log are complete.
 
 ## Browser compatibility
 
@@ -178,6 +180,6 @@ Do not commit account identifiers, passwords, one-time codes, API keys, recovery
 
 ## Version and license
 
-Current version: **1.3.2**. The Skill was renamed from `social-media-deep-research` to `eliot-social-growth`; existing users should reinstall under the new name. See [Releases](https://github.com/seamas0825-lab/eliot-social-growth/releases).
+Current version: **1.4.0**. The Skill was renamed from `social-media-deep-research` to `eliot-social-growth`; existing users should reinstall under the new name. See [Releases](https://github.com/seamas0825-lab/eliot-social-growth/releases).
 
 Licensed under the [MIT License](LICENSE).

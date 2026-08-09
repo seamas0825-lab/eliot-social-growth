@@ -1,4 +1,4 @@
 interface:
   display_name: "Eliot Social Growth"
   short_description: "Eliot（梁一孟）的社媒增长证据、流程门禁与实验执行系统"
-  default_prompt: "Use $eliot-social-growth to lock a complete branch blueprint, preserve workflow checkpoints, verify evidence, and design the cheapest executable social-growth experiment."
+  default_prompt: "Use $eliot-social-growth to run the browser and mode preflight, lock competitor and keyword evidence before any social content calendar, preserve workflow checkpoints, and design the cheapest executable growth experiment."

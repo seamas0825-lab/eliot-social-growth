@@ -7,6 +7,7 @@ Choose only what the task needs. Keep strategy and execution linked by stable ID
 - [Strategy memo](#strategy-memo)
 - [Research database](#research-database)
 - [First-month plan](#first-month-plan)
+- [Mandatory social-content evidence contract](#mandatory-social-content-evidence-contract)
 - [Platform packaging matrix](#platform-packaging-matrix)
 - [Convergence memo](#convergence-memo)
 - [Product-led social loop](#product-led-social-loop)
@@ -112,6 +113,18 @@ Include:
 - weekly decision checkpoint.
 
 Each planned item needs a credible payoff and a follow reason. Do not force an exaggerated attention entry when direct proof, quiet authority, documentary observation, or search utility better serves the brand.
+
+## Mandatory social-content evidence contract
+
+Do not generate a final content calendar until the guard's `calendar` assertion passes. The deliverable must contain or directly link to:
+
+1. a competitor and adjacent-account table with classification basis, profile/account context, opened original posts, dates, visible labelled metrics, mechanism, and limitations;
+2. an audience-psychology and keyword map connecting role, situation, desired progress, anxiety/objection, and likely query language;
+3. a keyword-to-original-native-post performance map on the target platform, plus a clearly separated supplemental-platform probe when available;
+4. an evidence-limit section covering private metrics, personalization, inaccessible posts, account-relative comparison, cross-platform transfer, language/sample bias, and unstable factual claims;
+5. a research-to-calendar change log showing exactly which research finding changed a topic, opening, proof, format, CTA, cadence, or measurement choice.
+
+The final calendar must trace every priority item to at least one evidence mechanism or label it a provisional test. A complete row still includes the user's requested execution fields—such as topic, on-asset text or script, caption, tags, format, asset needs, CTA, measurement, and approval risk—but formatting completeness cannot substitute for the five research prerequisites.
 
 ## Platform packaging matrix
 

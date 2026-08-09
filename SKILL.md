@@ -25,9 +25,19 @@ Keep three layers separate:
 
 Never present inference as observed fact.
 
+## Run the startup preflight
+
+Before formally starting research, silently detect the operating system and whether the required browser runtime and companion skills are already available. **Complete this detection before showing the mode choices; reading documentation or seeing a Skill name is not enough.** On macOS require EGO Lite Browser plus the `ego-browser` skill and make one harmless live EGO invocation to confirm the runtime. On Windows require Browser Use plus the `eze-is/web-access` skill and verify their adapter path to the intended Chrome or Edge instance. If every required component is present, record the result and continue without reminding the user. If something is missing, name only the missing component, provide the relevant enable/install instruction, and pause dynamic or authenticated branches until it is available. Do not repeatedly remind the user after the prerequisite passes. Follow [references/platform-compatibility.md](references/platform-compatibility.md).
+
+Then assess task difficulty and present **Light, Standard, and Deep** as three choices, including estimated effort, the evidence depth each choice changes, and one recommended mode with a concrete rationale. Wait for the user's selection unless the user already selected a mode in the request; record a preselected mode and skip the question. After the mode is confirmed, present a compact proposed workflow before broad research.
+
+For platform research, name only the social accounts relevant to the task and remind the user once that logged-in TikTok, Instagram, Facebook, YouTube, Reddit, Pinterest, Threads, or other selected accounts materially improve native search, comments, and result access. Do not ask for credentials. If the required account is already visibly logged in, record it and skip the reminder. If login, CAPTCHA, 2FA, or consent is required, hand control to the user.
+
+Multiple web-AI services are optional. Present a recommendation based on the distinct uncertainty each service can own, let the user select or decline services, and remind them that each selected web AI must already be logged in inside the controlled browser. Record selected services, actual model/mode, and login state. Read [references/ai-research-orchestration.md](references/ai-research-orchestration.md) and [references/ai-service-prompt-templates.md](references/ai-service-prompt-templates.md).
+
 ## Select a run mode
 
-Choose the lowest-cost mode that matches decision risk. State the mode in the research brief.
+Recommend the lowest-cost mode that matches decision risk, but let the user choose. State the confirmed mode and recommendation rationale in the research brief.
 
 | Mode | Use when | Default evidence effort | Required output |
 | --- | --- | --- | --- |
@@ -45,9 +55,13 @@ Before broad browsing, create a branch blueprint and pass its Blueprint Gate. Ex
 
 For Standard and Deep content or positioning work, the official baseline and target native-account behavior are default hard dependencies when relevant and permitted. A user's scope restriction such as “do not inspect the website” overrides the default and must be preserved as `excluded_by_user`.
 
+For every social-media content strategy, direct-competitor research and cross-category analogous-mechanism research are mandatory branches. Think through the comparison set from the verified brand, audience, offer, market, and platform before searching. If the comparison set remains weak, use EGO to open Perplexity and run the bounded competitor-discovery prompt in [references/ai-prompt-quality.md](references/ai-prompt-quality.md). Prefer **Kimi K3 Thinking** when it is visibly available and appropriate; verify and record the actual model/mode, and use the nearest source-capable reasoning/search mode when it is not available. AI-suggested accounts remain leads until their official profiles or original posts are opened.
+
 Plan dependencies and browser concurrency before acting. Put independent branches into separate EGO task spaces or equivalent isolated sessions when the host supports parallel work; keep shared editors, authentication handoffs, sensitive actions, convergence, and final strategy selection sequential. Record stable task-space, tab, conversation, and external-job identifiers.
 
-Pass four workflow checkpoints: Blueprint Gate before browsing, Branch-Exit Gate after every branch, Pre-Convergence Completeness Gate before belief audit or strategy selection, and Pre-Delivery Gate before final output. If a planned branch was forgotten, reopen it or explicitly exclude it with a decision-value reason. Do not begin strategy writing just because one useful branch completed.
+Pass four workflow checkpoints: Blueprint Gate before browsing, Branch-Exit Gate after every branch, Pre-Convergence Completeness Gate before belief audit or strategy selection, and Pre-Delivery Gate before final output. Run the guard's omission audit after every branch, after a user update, when returning from a slow job, and before convergence or delivery. If a planned branch was forgotten, reopen it or explicitly exclude it with a decision-value reason. Do not begin strategy writing just because one useful branch completed.
+
+For a social-media content strategy, **do not draft the final content calendar** until all five calendar prerequisites are complete and recorded: competitor data; audience psychology and keyword hypotheses; keyword-to-original-native-post performance; evidence/access limitations; and a research-to-calendar change log stating which findings will change topics, openings, proof, format, CTA, or measurement. Run `assert --action calendar` immediately before calendar drafting. A failure is a hard stop.
 
 ## Enforce the workflow with the guard
 
@@ -57,12 +71,12 @@ The written procedure is not enough: use the bundled guard as a fail-closed cont
 python3 scripts/workflow_guard.py init \
   --state work/run-state.yaml --project "..." --decision "..." \
   --risk reversible --success-signal "..." --observation-window "..." \
-  --mode Standard
+  --mode Standard --task-type social_content_strategy
 ```
 
 Then fill the branch ledger, explicit dispositions, search-intent map, parallel task-space IDs, capability results, and AI value decision. Run `python3 scripts/workflow_guard.py approve --state work/run-state.yaml --what blueprint` only after reviewing that ledger, followed by `gate --gate blueprint`. Before any broad research, branch exclusion, or prose conclusion about decision value, run `assert --action research`; before opening AI, also run `assert --action ai`. A non-zero result means stop browsing and repair the state.
 
-After the official brand baseline, official social accounts, and target-native account behavior are complete, set their branch exits and run `gate --gate brand-baseline`. If the remaining competitor/analogous, multi-AI, and keyword-to-native-performance tasks are independent, run `assert --action parallel-research`, create three isolated EGO task spaces, and record one stable task-space ID per subtask. Keep convergence sequential. After each branch, set its status, sources, limitations, and `branch_exit_gate`, then run `gate --gate branch-exit --branch BRANCH_ID`. Before belief audit, strategy writing, or content-calendar drafting, run `gate --gate pre-convergence`; before presenting the final output, run `gate --gate pre-delivery`. Use `assert --action strategy` and `assert --action delivery` immediately before those actions. Never report a gate as passed from memory or from a checklist in prose.
+After the official brand baseline, official social accounts, and target-native account behavior are complete, set their branch exits and run `gate --gate brand-baseline`. If the remaining competitor/analogous, selected-AI, and keyword-to-native-performance tasks are independent, run `assert --action parallel-research`, create isolated EGO task spaces, and record one stable task-space ID per subtask. Keep convergence sequential. After each branch, set its status, sources, limitations, and `branch_exit_gate`, then run `gate --gate branch-exit --branch BRANCH_ID` followed by `audit`. Before belief audit or strategy writing, run `gate --gate pre-convergence`; before a final social content calendar, also run `assert --action calendar`; before presenting the final output, run `gate --gate pre-delivery`. Use `assert --action strategy` and `assert --action delivery` immediately before those actions. Never report a gate as passed from memory or from a checklist in prose.
 
 When the user adds, removes, or changes scope, evidence, audience, constraints, or success signals, first run `reentry --state work/run-state.yaml --reason "..."`. Reconcile the ledger and dependencies, review the revised blueprint, approve it, and pass the Blueprint Gate again. A reentry flag blocks strategy and delivery until this cycle completes.
 
@@ -79,6 +93,7 @@ For continuations, compaction, handoff, or return from a slow external job, read
 - Cross-category translation: [references/category-transfer.md](references/category-transfer.md)
 - AI branch routing: [references/ai-research-orchestration.md](references/ai-research-orchestration.md)
 - Outbound AI prompt contract: [references/ai-prompt-quality.md](references/ai-prompt-quality.md)
+- Service roles and prompts for DeepSeek, Doubao, Kimi, Qwen, and Zhipu Qingyan: [references/ai-service-prompt-templates.md](references/ai-service-prompt-templates.md)
 - Costly or sensitive decisions: [references/decision-protocols.md](references/decision-protocols.md)
 - Human checkpoints: [references/human-harness.md](references/human-harness.md)
 - Editorial selection: [references/editorial-judgment.md](references/editorial-judgment.md)
@@ -94,7 +109,7 @@ Use the templates in [templates/](templates/) only when their decision artifact 
 
 Treat `SKILL.md` and relative files as the portable package. Map workflow intents to the tools exposed by Claude Code, Codex, WorkBuddy, OpenClaw, Hermes Agent, or another Agent Skills-compatible host; do not depend on a Codex-only tool name.
 
-- **macOS preferred path:** EGO Browser plus the installed `ego-browser` skill.
+- **macOS preferred path:** EGO Lite Browser plus the installed `ego-browser` skill.
 - **Windows fallback:** Browser Use plus [eze-is/web-access](https://github.com/eze-is/web-access), with Chrome or Edge remote debugging. Expect more setup variance than EGO and verify smaller action batches.
 - **No authenticated adapter:** continue with open-web research only and label the unavailable evidence.
 
@@ -163,11 +178,13 @@ Prefer primary and behavioral evidence. Treat AI output as leads until the cited
 
 For content, discovery, trend, or positioning work, build a search-intent map before hunting for examples. Derive query families from audience roles, desired progress, anxieties, objections, alternatives, geography, category vocabulary, and native-language or platform terms. Probe search engines and native platform search or autocomplete, then use the validated queries to open original high-performing social cases. Record the query-to-post path and judge performance relative to observable account context; do not invent universal viral thresholds.
 
+Probe at least one relevant supplemental social platform when the query mechanism may transfer and access is available—for example, use TikTok search results to supplement an Instagram plan, or YouTube/Reddit to test tutorial or objection language. Preserve target-platform and supplemental-platform results separately. Cross-platform attention validates a mechanism or vocabulary lead, not demand, ranking, or expected performance on the target platform. If access is unavailable, record a degraded cross-platform probe and the limitation instead of silently omitting it.
+
 When a metric or claim cannot be verified because it is rendered as an animation/canvas, hidden behind login, geo-restricted, or accessible only through a closed surface such as a private Discord or storefront, use [templates/evidence-access-gap.md](templates/evidence-access-gap.md). Exclude unverifiable precise values from decision evidence; do not turn inability to observe into a zero or an estimate.
 
 ## Use authenticated web AI selectively
 
-Choose the smallest service set with distinct jobs. Examples include live social discovery, Reddit/source synthesis, deep research, multilingual reasoning, or adversarial review. Do not ask several services the same broad question.
+Choose the smallest service set with distinct jobs from the user's confirmed selection. Examples include live social discovery, Reddit/source synthesis, deep research, multilingual reasoning, or adversarial review. Recommend services from their current verified strengths; do not ask several services the same broad question. Grok, Gemini, Perplexity, ChatGPT, DeepSeek, Doubao, Kimi, Qwen, and Zhipu Qingyan are adapters rather than authorities, and each material claim still needs an original source.
 
 Before submitting any prompt:
 
@@ -255,6 +272,8 @@ Finish only when:
 - material decisions are supported or labeled as inference;
 - sources open and observation dates are present;
 - direct and analogous evidence are distinguished;
+- for social content strategy, competitor data, keyword psychology, keyword-to-native performance, evidence limitations, and the research-to-calendar change log are all complete before the calendar;
+- a relevant supplemental-platform keyword probe is complete or explicitly degraded;
 - contradictions and retrieval limits are preserved;
 - inaccessible evidence, unverifiable values, and language-transfer limits are explicit;
 - the plan fits resources and compliance constraints;
