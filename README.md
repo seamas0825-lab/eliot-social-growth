@@ -1,6 +1,6 @@
 # Eliot Social Growth
 
-[![Version](https://img.shields.io/badge/version-1.2.0-blue)](https://github.com/seamas0825-lab/eliot-social-growth/releases/tag/v1.2.0)
+[![Version](https://img.shields.io/badge/version-1.3.0-blue)](https://github.com/seamas0825-lab/eliot-social-growth/releases/tag/v1.3.0)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **Created by Eliot（梁一孟）.** An Agent Skills-compatible evidence-to-experiment operating system for social growth. It turns direct user and market evidence into hard strategic choices, repeatable content systems, and measurable experiments while preserving uncertainty, human judgment, and source traceability.
@@ -47,6 +47,12 @@ Without an authenticated adapter, the framework still supports open-web research
 Browser smoke and capability checks are hard prerequisites for authenticated or dynamic branches. The Skill verifies helpers through harmless live invocation and probes each service's visible `textarea`, `contenteditable`, or text input before the real prompt. It does not trust a fixed selector or `help()` registry alone.
 
 ## Mandatory decision gates
+
+Every substantial run also uses the executable `scripts/workflow_guard.py`.
+It initializes the full branch ledger, rejects unresolved `TODO` fields,
+resets gates after scope changes, and blocks strategy or delivery until the
+recorded checkpoints pass. See [workflow control](references/workflow-control.md)
+for the required command sequence.
 
 - **Browser capability gate:** PASS, DEGRADED with explicit claim restrictions, or FAIL and block the branch.
 - **Belief gate:** every P0 channel, ICP, positioning wedge, launch narrative, comparison, material budget/production choice, and sensitive claim must be audited before commitment.
@@ -137,6 +143,9 @@ Golden eval cases are connected to a runnable harness:
 ```bash
 python3 -m pip install -r scripts/requirements-test.txt
 python3 scripts/run_evals.py --validate-only
+
+# Runtime regression tests for the fail-closed state guard
+python3 scripts/test_workflow_guard.py
 ```
 
 Behavioral runs require explicit agent and judge model/tool metadata and save dated criterion scores. See [eval harness instructions](evals/README.md). Public smoke tests prove only the tested adapter path, not authenticated-site reliability.
@@ -169,6 +178,6 @@ Do not commit account identifiers, passwords, one-time codes, API keys, recovery
 
 ## Version and license
 
-Current version: **1.2.0**. The Skill was renamed from `social-media-deep-research` to `eliot-social-growth`; existing users should reinstall under the new name. See [Releases](https://github.com/seamas0825-lab/eliot-social-growth/releases).
+Current version: **1.3.0**. The Skill was renamed from `social-media-deep-research` to `eliot-social-growth`; existing users should reinstall under the new name. See [Releases](https://github.com/seamas0825-lab/eliot-social-growth/releases).
 
 Licensed under the [MIT License](LICENSE).
