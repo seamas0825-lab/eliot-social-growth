@@ -67,7 +67,24 @@ For Reddit research, sample across relevant communities and thread contexts. Sep
 
 ## Handle long-running research jobs
 
-Apply the parent skill's ten-second anti-blocking rule. Preserve the browser session or task-space ID, conversation URL, current mode, exact prompt, and visible job state; continue independent branches; and poll only at convergence points. Never submit a duplicate Deep Research job while the first remains active.
+Apply the parent skill's anti-blocking rule. Preserve the browser session or task-space ID, conversation URL, current mode, exact prompt, submission time, hedge threshold, and visible job state. Continue independent branches and poll only at planned convergence points. Never resubmit the same service job while the first remains active.
+
+### Use a source-quality-gated latency hedge
+
+For a time-sensitive deep-research branch, predeclare a hedge threshold between 5 and 8 minutes. Default to 5 minutes when other research can converge soon; use up to 8 minutes when latency is expected and the result is not on the critical path.
+
+If Gemini Deep Research or another primary service has not produced a substantive, source-adequate result by that threshold:
+
+1. Keep the original job and its stable ID; do not restart or duplicate it.
+2. Open a verified faster service such as ChatGPT in a separate isolated task space or tab set.
+3. Pass the same bounded uncertainty, verified facts, source requirements, date window, and output schema. Label this branch `latency_hedge`, not independent corroboration.
+4. Continue other dependency-ready work while both jobs run.
+5. Select the first **source-adequate** result to unblock convergence: material claims have direct URLs, dates, evidence/inference separation, and enough relevance to change the decision. Speed alone is not quality.
+6. Open and verify the selected branch's original sources. If it fails verification, the other branch remains eligible; neither system's prose becomes evidence by itself.
+7. If the slower job finishes before the Pre-Convergence Completeness Gate, extract only new sources, contradictions, or material gaps. Deduplicate shared URLs and preserve genuine divergence.
+8. If the slower job is still running at convergence and is no longer decision-critical, mark it `excluded_redundant`, `unresolved_timeout`, or `waiting_noncritical` with a reason. Do not block delivery merely to collect a second opinion.
+
+The hedge is a reliability and latency mechanism, not an AI voting scheme. Two systems answering the same question remain one evidence role unless they recover distinct verified sources. Do not launch additional hedges after one verified alternative is active unless the user explicitly requests broader multi-AI research and each extra branch has a distinct job.
 
 ## Record the branch result
 
