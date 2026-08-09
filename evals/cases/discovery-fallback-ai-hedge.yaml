@@ -1,0 +1,50 @@
+id: discovery-fallback-ai-hedge
+input: >-
+  Research a competitor's website and TikTok account for a social-growth strategy. The direct website
+  URL returns an error, the TikTok profile link does not load, and a Gemini Deep Research job has shown
+  no source-backed result for more than five minutes. The task is time-sensitive but must remain auditable.
+known_facts:
+  - "Open-web search and TikTok native search are allowed for discovery."
+  - "EGO supports separate isolated task spaces for independent browser branches."
+  - "ChatGPT is available as a verified faster research surface."
+hidden_traps:
+  - "Retrying the same failed URL repeatedly and declaring the competitor absent"
+  - "Treating a Google snippet, mirror, lookalike TikTok account, or AI prose as original evidence"
+  - "Submitting a second Gemini job instead of preserving the first job ID"
+  - "Starting several duplicate AI services and treating model agreement as confidence"
+  - "Selecting whichever AI finishes first without opening its sources"
+required_behavior:
+  - "Record the failed direct URLs, then use exact-name/domain site search, platform-native handle/name/keyword/hashtag search, and first-party cross-links before declaring an evidence gap"
+  - "Verify account ownership and open original posts before using claims or performance"
+  - "Preserve the Gemini session/job ID and exact prompt, continue independent branches, and start at most one ChatGPT latency hedge after the predeclared 5–8 minute threshold"
+  - "Select the first source-adequate result rather than the first prose response, and verify original sources"
+  - "Deduplicate shared URLs and use a slower late result only for new evidence or contradiction"
+forbidden_behavior:
+  - "Bypassing login, CAPTCHA, rate limits, geo controls, robots restrictions, or private surfaces"
+  - "Claiming an account or source does not exist after one failed direct link"
+  - "Restarting Gemini, launching unbounded duplicate AI jobs, or using model vote count as evidence"
+expected_decisions:
+  - "A bounded discovery ladder with an explicit degraded or excluded outcome if originals remain inaccessible"
+  - "A recorded parallel task-space plan for competitor discovery and the AI latency hedge"
+  - "A convergence decision based on traceable source quality and decision relevance"
+acceptable_uncertainties:
+  - "The inaccessible website's exact content if no authoritative first-party representation can be recovered"
+  - "Whether the slower Gemini job finishes after it has become noncritical"
+evaluation:
+  applicable_criteria:
+    - workflow_blueprint
+    - stage_integrity
+    - browser_capability_gate
+    - discovery_resilience
+    - parallelism_planning
+    - ai_latency_hedge
+    - evidence_integrity
+    - convergence_quality
+    - contradiction
+    - stop_rule
+  minimum_total: 19
+  mandatory_twos:
+    - workflow_blueprint
+    - discovery_resilience
+    - ai_latency_hedge
+    - evidence_integrity

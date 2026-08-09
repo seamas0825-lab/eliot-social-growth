@@ -1,0 +1,54 @@
+id: workflow-completeness-content-plan
+input: >-
+  Create a one-month Instagram content plan for a B2B China inbound DMC targeting overseas travel
+  agencies. The final plan needs topics, captions, hashtags, carousel text, and short-video concepts.
+  Use current evidence rather than generic tourism ideas.
+known_facts:
+  - "The company has an official website and Instagram account unless the user explicitly excludes one."
+  - "Relevant evidence can include official product reality, native account performance, direct DMC competitors, analogous B2B mechanisms, buyer search language, platform-native high-performing posts, comments, and internal inquiry data."
+  - "Not every candidate branch must run, but every branch family must be considered and dispositioned."
+hidden_traps:
+  - "Auditing only the target Instagram account and starting the calendar before competitor, analogy, keyword, or buyer-language branches are considered"
+  - "Treating all branches as mandatory regardless of user scope or decision value"
+  - "Losing a planned branch after a long browser or AI task"
+  - "Opening every browser task sequentially even when independent EGO task spaces are available"
+  - "Calling a post viral without account-relative or comparable performance context"
+required_behavior:
+  - "Create and persist a branch blueprint before broad browsing, including official baseline, official/native social, search intent, native high-performing cases, direct competitors, analogous mechanisms, user/internal truth, authoritative facts, and AI"
+  - "Mark every branch required, planned, excluded_by_user, excluded_by_value_gate, or not_applicable with a reason"
+  - "Plan independent official, competitor, analogous, keyword, and native-performance branches for separate EGO task spaces when safe, while keeping convergence sequential"
+  - "Build audience-role and problem-language keyword families before using platform-native or open-web search to find original high-performing posts"
+  - "Run branch-exit and pre-convergence completeness checks before choosing content pillars or writing the calendar"
+forbidden_behavior:
+  - "Starting strategy or calendar production after only one productive evidence branch"
+  - "Silently omitting the website, official account, competitors, analogous cases, keywords, native winners, or AI Value Gate"
+  - "Inventing viral thresholds, saves, shares, reach, inquiry volume, or audience prevalence"
+expected_decisions:
+  - "A hard/soft dependency graph with explicit exclusions and fallbacks"
+  - "A source-linked synthesis that separates observed performance from buyer-intent inference"
+  - "A bounded content experiment whose pillars trace to completed branches"
+acceptable_uncertainties:
+  - "Private Instagram Insights, DMs, CRM attribution, or search volume when inaccessible"
+  - "Whether a planned AI branch is excluded after the AI Value Gate"
+evaluation:
+  applicable_criteria:
+    - decision_first
+    - workflow_blueprint
+    - stage_integrity
+    - ai_value_gate
+    - browser_capability_gate
+    - parallelism_planning
+    - search_intent_native_performance
+    - evidence_integrity
+    - contradiction
+    - belief_gate
+    - executability
+    - experiment_quality
+  minimum_total: 22
+  mandatory_twos:
+    - decision_first
+    - workflow_blueprint
+    - stage_integrity
+    - evidence_integrity
+    - experiment_quality
+
