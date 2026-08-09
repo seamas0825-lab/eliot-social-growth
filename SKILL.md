@@ -39,7 +39,7 @@ These ranges are effort guardrails, not proof thresholds or universal benchmarks
 
 ## Lock the workflow before research
 
-For every substantial Standard or Deep run, read and follow [references/workflow-control.md](references/workflow-control.md). Copy [schemas/run-state.yaml](schemas/run-state.yaml) into the task workspace and treat it as the workflow source of truth across compaction, handoff, long-running jobs, and follow-up turns.
+For every substantial Standard or Deep run, read and follow [references/workflow-control.md](references/workflow-control.md). Initialize the state with `scripts/workflow_guard.py`; do not hand-roll a partial state file. Treat that state as the workflow source of truth across compaction, handoff, long-running jobs, user updates, and follow-up turns.
 
 Before broad browsing, create a branch blueprint and pass its Blueprint Gate. Explicitly consider official product/website sources, official social accounts, target-account native performance, search intent and keywords, native high-performing cases, direct competitors, analogous mechanisms, user/community language, authoritative facts, internal evidence, and AI research. Mark every family `required`, `planned`, `excluded_by_user`, `excluded_by_value_gate`, or `not_applicable`, with a reason. For every included branch, record the owned decision, dependency, owner/execution path, time or source budget, entry condition, stop rule, fallback ladder, expected artifact, and parallel group. If any field is missing, the Blueprint Gate fails. Never let a branch disappear merely because the conversation moved on.
 
@@ -49,10 +49,30 @@ Plan dependencies and browser concurrency before acting. Put independent branche
 
 Pass four workflow checkpoints: Blueprint Gate before browsing, Branch-Exit Gate after every branch, Pre-Convergence Completeness Gate before belief audit or strategy selection, and Pre-Delivery Gate before final output. If a planned branch was forgotten, reopen it or explicitly exclude it with a decision-value reason. Do not begin strategy writing just because one useful branch completed.
 
+## Enforce the workflow with the guard
+
+The written procedure is not enough: use the bundled guard as a fail-closed contract. In a fresh workspace run:
+
+```bash
+python3 scripts/workflow_guard.py init \
+  --state work/run-state.yaml --project "..." --decision "..." \
+  --risk reversible --success-signal "..." --observation-window "..." \
+  --mode Standard
+```
+
+Then fill the branch ledger, explicit dispositions, search-intent map, parallel task-space IDs, capability results, and AI value decision. Run `python3 scripts/workflow_guard.py approve --state work/run-state.yaml --what blueprint` only after reviewing that ledger, followed by `gate --gate blueprint`. A non-zero result means stop browsing and repair the state.
+
+After each branch, set its status, sources, limitations, and `branch_exit_gate`, then run `gate --gate branch-exit --branch BRANCH_ID`. Before belief audit, strategy writing, or content-calendar drafting, run `gate --gate pre-convergence`; before presenting the final output, run `gate --gate pre-delivery`. Use `assert --action strategy` and `assert --action delivery` immediately before those actions. Never report a gate as passed from memory or from a checklist in prose.
+
+When the user adds, removes, or changes scope, evidence, audience, constraints, or success signals, first run `reentry --state work/run-state.yaml --reason "..."`. Reconcile the ledger and dependencies, review the revised blueprint, approve it, and pass the Blueprint Gate again. A reentry flag blocks strategy and delivery until this cycle completes.
+
+For continuations, compaction, handoff, or return from a slow external job, read the state and run `status` before doing anything else. The guard is deliberately independent of Codex, EGO, or any single browser host; it is the executable stop condition that prevents a capable model from silently skipping a branch.
+
 ## Load only the references required
 
 - Browser/host selection and installation: [references/platform-compatibility.md](references/platform-compatibility.md)
 - Workflow blueprint, stage checkpoints, keyword discovery, and browser parallelism: [references/workflow-control.md](references/workflow-control.md)
+- Executable workflow guard and reentry contract: [scripts/workflow_guard.py](scripts/workflow_guard.py)
 - Mandatory browser capability gate: [references/browser-capability-gate.md](references/browser-capability-gate.md)
 - Browser prompt-injection and action safety: [references/browser-security.md](references/browser-security.md)
 - Research schema and evidence scoring: [references/research-schema.md](references/research-schema.md)

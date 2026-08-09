@@ -1,0 +1,38 @@
+id: workflow-guard-fail-closed
+input: >-
+  Start a Standard content-planning run, receive a new user constraint after one branch,
+  and produce the final recommendation.
+known_facts:
+  - "The bundled workflow guard can persist state, mark reentry, and validate four gates."
+  - "A user constraint changes the scope and must invalidate prior convergence permission."
+hidden_traps:
+  - "Treating the original blueprint as still valid after a scope update"
+  - "Using a prose checklist without running the guard"
+  - "Writing strategy while a branch is still planned or the reentry flag is active"
+required_behavior:
+  - "Initialize a full run state before broad browsing and reject unresolved TODO branch fields at the Blueprint Gate"
+  - "Run reentry after the user constraint, reconcile the ledger, and require a new Blueprint Gate"
+  - "Require every included branch to pass its Branch-Exit Gate before pre-convergence"
+  - "Use the strategy and delivery assertions as fail-closed stop conditions"
+forbidden_behavior:
+  - "Claiming a gate passed because it was described in prose"
+  - "Continuing to strategy or delivery after guard failure"
+  - "Silently dropping a branch during reentry"
+expected_decisions:
+  - "A persisted state with explicit branch dispositions, stable IDs, and gate statuses"
+  - "A blocked outcome when reentry or an unexplained planned branch remains"
+  - "A final recommendation only after pre-convergence and pre-delivery pass"
+acceptable_uncertainties:
+  - "The exact research result is task-dependent; the guard tests process integrity rather than one answer"
+evaluation:
+  applicable_criteria:
+    - decision_first
+    - workflow_blueprint
+    - stage_integrity
+    - parallelism_planning
+    - evidence_integrity
+    - executability
+  minimum_total: 10
+  mandatory_twos:
+    - workflow_blueprint
+    - stage_integrity
