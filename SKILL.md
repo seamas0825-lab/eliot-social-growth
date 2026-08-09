@@ -143,7 +143,9 @@ Classify the decision as **reversible**, **costly but reversible**, or **hard to
 
 Before opening AI or multi-agent branches, ask whether the uncertainty is better resolved by a primary source, one real user, internal product/performance data, a cheap live test, or a reversible judgment call.
 
-Use AI when it adds source access, contradiction, multilingual coverage, structured extraction, or useful synthesis. Skip it when the answer cannot change action or direct inspection/testing owns the truth. Record the choice. For the full protocol, use [references/decision-protocols.md](references/decision-protocols.md).
+Do not confuse evidence access with AI access. On macOS, a PASS or defensible DEGRADED EGO browser capability gate is an available entry path to authenticated web AI surfaces such as Gemini, ChatGPT, Grok, Perplexity, or other services visible in the browser. A missing MCP connector, API key, or dedicated AI tool is not evidence that the browser AI branch is unavailable. Open the selected surface through an isolated EGO task space, discover its live editor, run the disposable write/readback/clear probe, and record the conversation or job ID before submitting the bounded prompt.
+
+Use AI when it adds source access, contradiction, multilingual coverage, structured extraction, or useful synthesis. Skip it only after recording the available entry path and a decision-value reason showing why the answer cannot change action or why direct inspection/testing owns the truth. Keep internal data access separate: missing Insights, CRM, DM, or analytics access may exclude the internal-evidence branch, but it must never by itself exclude the AI branch. For the full protocol, use [references/decision-protocols.md](references/decision-protocols.md) and [references/ai-research-orchestration.md](references/ai-research-orchestration.md).
 
 ## Build evidence branches by source role
 

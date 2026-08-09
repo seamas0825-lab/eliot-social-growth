@@ -51,7 +51,7 @@ Never leave a candidate branch absent or silently unexecuted.
 | User voice and community | Include when vocabulary, objection, anxiety, or buyer intent could change the decision | Comments, Reddit, forums, reviews, interviews, sales/support language |
 | Authoritative facts | Required when law, policy, safety, technical limits, pricing, or unstable facts affect the claim | First-party or authoritative sources |
 | Internal evidence or one real user | Prefer when it owns conversion, product truth, constraints, or execution reality | Insights, CRM, DMs, interviews, performance data, team capacity |
-| AI research | Include only after the AI Value Gate | Bounded source discovery, contradiction, multilingual coverage, long-context synthesis, structured extraction |
+| AI research | Include only after the AI Value Gate; EGO Browser is a valid web-AI entry path when its capability gate passes | Bounded source discovery, contradiction, multilingual coverage, long-context synthesis, structured extraction |
 
 For every included branch record:
 
