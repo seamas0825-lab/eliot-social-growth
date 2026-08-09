@@ -9,6 +9,115 @@ project:
   non_negotiables: []
   observation_window: ""
 
+workflow:
+  current_stage: "scope | blueprint | research | pre_convergence | belief_audit | strategy | experiment | delivery"
+  source_of_truth_path: ""
+  last_reconciled_at: ""
+  reentry_check_completed: false
+  checkpoints:
+    blueprint_gate: "pending | pass | fail"
+    branch_exit_gate_last_branch: ""
+    branch_exit_gate_status: "pending | pass | fail"
+    pre_convergence_completeness_gate: "pending | pass | fail"
+    pre_delivery_gate: "pending | pass | fail"
+  forgotten_or_reopened_branches: []
+  active_blockers: []
+
+branch_inventory:
+  - family: "official_baseline"
+    disposition: "required | planned | excluded_by_user | excluded_by_value_gate | not_applicable"
+    reason: ""
+    branch_ids: []
+  - family: "official_social_accounts"
+    disposition: "required | planned | excluded_by_user | excluded_by_value_gate | not_applicable"
+    reason: ""
+    branch_ids: []
+  - family: "target_native_performance"
+    disposition: "required | planned | excluded_by_user | excluded_by_value_gate | not_applicable"
+    reason: ""
+    branch_ids: []
+  - family: "search_intent_keywords"
+    disposition: "required | planned | excluded_by_user | excluded_by_value_gate | not_applicable"
+    reason: ""
+    branch_ids: []
+  - family: "native_high_performing_cases"
+    disposition: "required | planned | excluded_by_user | excluded_by_value_gate | not_applicable"
+    reason: ""
+    branch_ids: []
+  - family: "direct_competitors"
+    disposition: "required | planned | excluded_by_user | excluded_by_value_gate | not_applicable"
+    reason: ""
+    branch_ids: []
+  - family: "analogous_mechanisms"
+    disposition: "required | planned | excluded_by_user | excluded_by_value_gate | not_applicable"
+    reason: ""
+    branch_ids: []
+  - family: "user_voice_community"
+    disposition: "required | planned | excluded_by_user | excluded_by_value_gate | not_applicable"
+    reason: ""
+    branch_ids: []
+  - family: "authoritative_facts"
+    disposition: "required | planned | excluded_by_user | excluded_by_value_gate | not_applicable"
+    reason: ""
+    branch_ids: []
+  - family: "internal_or_real_user_evidence"
+    disposition: "required | planned | excluded_by_user | excluded_by_value_gate | not_applicable"
+    reason: ""
+    branch_ids: []
+  - family: "ai_research"
+    disposition: "required | planned | excluded_by_user | excluded_by_value_gate | not_applicable"
+    reason: ""
+    branch_ids: []
+
+search_intent:
+  audience_roles: []
+  decision_situations: []
+  query_families: []
+  languages: []
+  native_platform_probes: []
+  open_web_probes: []
+  query_to_case_source_ids: []
+  repeated_mechanisms_stop_reached: false
+
+parallelism:
+  adapter: ""
+  host_concurrency_available: false
+  groups:
+    - id: "parallel-001"
+      mode: "parallel_now | parallel_after_gate | sequential_dependency | single_surface_only"
+      branch_ids: []
+      task_space_ids: []
+      owner_paths: []
+      start_condition: ""
+      convergence_point: ""
+      account_or_rate_limit: ""
+
+discovery_attempts:
+  - id: "discovery-001"
+    branch_id: ""
+    target: ""
+    method: "direct_url | search_engine | platform_native_search | first_party_crosslink | official_api_or_embed | user_handoff | lead_only"
+    query_or_url: ""
+    observed_result: ""
+    source_status: "original_verified | authoritative_verified | lead_only | blocked | not_found"
+    next_fallback: ""
+
+external_jobs:
+  - id: "job-001"
+    branch_id: ""
+    service_model_mode: ""
+    role: "primary | latency_hedge | distinct_ai_branch"
+    submitted_at: ""
+    hedge_threshold_minutes: 5
+    stable_session_or_job_id: ""
+    conversation_url: ""
+    status: "planned | running | source_adequate | completed | failed | excluded_redundant | unresolved_timeout | waiting_noncritical"
+    last_checked_at: ""
+    source_adequate: false
+    selected_to_unblock: false
+    new_sources_or_contradictions: []
+    disposition_reason: ""
+
 ai_value_gate:
   primary_source_faster: false
   real_user_faster: false
@@ -26,9 +135,9 @@ browser_capability_gate:
   required_capabilities: []
   verified_capabilities: []
   failed_capabilities: []
-  service_editor_probe: "not_required | pass | fail"
+  service_editor_probe: "pending | not_required | pass | fail"
   fallback_and_claim_restrictions: []
-  result: "not_required | pass | degraded | fail"
+  result: "pending | not_required | pass | degraded | fail"
 
 beliefs:
   - id: "belief-001"
@@ -66,6 +175,8 @@ evidence_access_gaps:
 
 branches:
   - id: "branch-001"
+    family: ""
+    disposition: "required | planned | excluded_by_user | excluded_by_value_gate | not_applicable"
     question: ""
     capability_required: ""
     service_adapter: ""
@@ -73,13 +184,20 @@ branches:
     known_limitation: ""
     fallback: ""
     dependency: "hard | soft | independent | asynchronous_external"
-    status: "planned | active | waiting | complete | excluded"
+    parallel_group_id: ""
+    time_or_source_budget: ""
+    entry_condition: ""
+    stop_rule: ""
+    expected_artifact: ""
+    status: "planned | active | waiting | complete | degraded | blocked | excluded"
     stable_session_id: ""
     session_url: ""
     exact_prompt_path: ""
     source_ids: []
     conflicts: []
     decision_affected: ""
+    branch_exit_gate: "pending | pass | fail"
+    changed_branches_or_beliefs: []
     included: false
     exclusion_reason: ""
 
