@@ -95,7 +95,7 @@ Before browsing, group branches into:
 
 When the host supports concurrency, give each independent branch its own EGO task space, tab set, owner, and stable ID. Never let two agents control the same task space. When concurrency is unavailable, round-robin across preserved task spaces instead of reopening or duplicating work.
 
-Use parallelism for official-account inspection, competitor discovery, analogous cases, search-intent probes, community language, and bounded AI branches when they do not depend on one another. Keep authentication handoffs, sensitive actions, belief convergence, and final strategy selection sequential.
+Use a two-wave default for content and positioning work. Wave 1 is the sequential brand baseline: official website/product when permitted, official social accounts, and target-native account behavior. After their Branch-Exit Gates pass, Wave 2 may open three independent EGO subtasks when no dependency exists: (1) direct competitors plus analogous mechanisms, (2) bounded multi-AI research, and (3) behavioral keyword families traced to native-platform performance. Each subtask gets its own task space, tab set, owner, and stable ID; convergence remains sequential. If a dependency or rate limit makes the wave unsafe, record `sequential_dependency` and run it round-robin instead. Keep authentication handoffs, sensitive actions, belief convergence, and final strategy selection sequential.
 
 ## Pass four workflow integrity checkpoints
 
@@ -112,8 +112,10 @@ Before broad research:
 If any included branch omits one of these fields, the Blueprint Gate is `FAIL`; do not start broad browsing. A branch-name list or generic research checklist is not a valid blueprint.
 
 Record the review explicitly with `workflow_guard.py approve --what blueprint`,
-then run `workflow_guard.py gate --gate blueprint`. The command must return
-success before dynamic browsing or broad research starts.
+then run `workflow_guard.py gate --gate blueprint` and
+`workflow_guard.py assert --action research`. The commands must return success
+before dynamic browsing, branch exclusion, or a prose decision-value conclusion
+starts. Pending AI access must be described as pending, never as `no_ai`.
 
 ### Checkpoint 2: Branch-exit gate
 
@@ -128,6 +130,12 @@ Do not start strategy drafting merely because one productive branch finished.
 Run `workflow_guard.py gate --gate branch-exit --branch BRANCH_ID` for each
 included branch. A completed branch without a passing exit gate is still
 incomplete.
+
+After the official baseline branch exits pass, run
+`workflow_guard.py gate --gate brand-baseline`. Then run
+`workflow_guard.py assert --action parallel-research` before opening the three
+post-baseline EGO subtasks. If the host exposes concurrency, the guard requires
+one stable task-space ID per active subtask.
 
 ### Checkpoint 3: Pre-convergence completeness gate
 

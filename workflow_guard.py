@@ -35,6 +35,25 @@ FAMILIES = (
     "internal_or_real_user_evidence",
     "ai_research",
 )
+BASELINE_FAMILIES = ("official_baseline", "official_social_accounts", "target_native_performance")
+GROUP_BY_FAMILY = {
+    "official_baseline": "brand-baseline-001",
+    "official_social_accounts": "brand-baseline-001",
+    "target_native_performance": "brand-baseline-001",
+    "direct_competitors": "post-baseline-wave-001",
+    "analogous_mechanisms": "post-baseline-wave-001",
+    "search_intent_keywords": "post-baseline-wave-001",
+    "native_high_performing_cases": "post-baseline-wave-001",
+    "ai_research": "post-baseline-wave-001",
+    "user_voice_community": "contextual-sequential-001",
+    "authoritative_facts": "contextual-sequential-001",
+    "internal_or_real_user_evidence": "contextual-sequential-001",
+}
+GROUP_SPECS = (
+    ("brand-baseline-001", "single_surface_only", "official brand baseline, official social accounts, and target-native account behavior"),
+    ("post-baseline-wave-001", "parallel_after_gate", "three independent EGO subtasks after the brand baseline: competitor/analogous, multi-AI, and keyword-to-native-performance"),
+    ("contextual-sequential-001", "sequential_dependency", "community, authoritative, and internal evidence when their decision value remains after baseline"),
+)
 DISPOSITIONS = {"required", "planned", "excluded_by_user", "excluded_by_value_gate", "not_applicable"}
 DONE_STATUSES = {"complete", "degraded", "excluded"}
 PLACEHOLDER = re.compile(r"^(?:$|TODO\b|pending(?:\s|$)|.+\s\|\s.+$)", re.IGNORECASE)
@@ -100,8 +119,8 @@ def base_state(args, path: Path):
                 "capability_verified_date": "",
                 "known_limitation": "",
                 "fallback": "TODO: record the bounded fallback ladder",
-                "dependency": "independent",
-                "parallel_group_id": "parallel-research-001",
+                "dependency": "soft" if family == "native_high_performing_cases" else ("asynchronous_external" if family == "ai_research" else "independent"),
+                "parallel_group_id": GROUP_BY_FAMILY.get(family, "parallel-research-001"),
                 "time_or_source_budget": "TODO: set a bounded time or source budget",
                 "entry_condition": "TODO: define the entry condition",
                 "stop_rule": "TODO: define the stop rule",
@@ -118,6 +137,48 @@ def base_state(args, path: Path):
                 "included": True,
                 "exclusion_reason": "",
             })
+
+    branch_ids_by_family = {family: [item["id"] for item in branches if item["family"] == family] for family in FAMILIES}
+    groups = []
+    for group_id, mode, description in GROUP_SPECS:
+        family_ids = [family for family, mapped_group in GROUP_BY_FAMILY.items() if mapped_group == group_id]
+        group = {
+            "id": group_id,
+            "mode": mode,
+            "branch_ids": [branch_id for family in family_ids for branch_id in branch_ids_by_family.get(family, [])],
+            "task_space_ids": [],
+            "owner_paths": [],
+            "start_condition": "TODO: define the shared gate",
+            "convergence_point": "TODO: define the sequential convergence point",
+            "account_or_rate_limit": "TODO: record account/rate-limit boundary",
+            "bundle_description": description,
+            "subtasks": [],
+        }
+        if group_id == "post-baseline-wave-001":
+            group["subtasks"] = [
+                {
+                    "id": "competitor-analog-001",
+                    "label": "Direct competitors and analogous mechanisms",
+                    "branch_ids": branch_ids_by_family.get("direct_competitors", []) + branch_ids_by_family.get("analogous_mechanisms", []),
+                    "task_space_ids": [], "owner_paths": [],
+                    "independence_rule": "Independent of the sibling AI and keyword-native subtasks after brand baseline exit.",
+                },
+                {
+                    "id": "multi-ai-001",
+                    "label": "Bounded multi-AI research",
+                    "branch_ids": branch_ids_by_family.get("ai_research", []),
+                    "task_space_ids": [], "owner_paths": [],
+                    "independence_rule": "Use distinct AI jobs with distinct questions; converge sequentially after source verification.",
+                },
+                {
+                    "id": "keyword-native-001",
+                    "label": "Behavioral keyword map and native-platform performance",
+                    "branch_ids": branch_ids_by_family.get("search_intent_keywords", []) + branch_ids_by_family.get("native_high_performing_cases", []),
+                    "task_space_ids": [], "owner_paths": [],
+                    "independence_rule": "The subtask may build the keyword map then trace it to native cases inside one task space; it is independent of the sibling subtasks.",
+                },
+            ]
+        groups.append(group)
 
     return {
         "version": 2,
@@ -139,6 +200,7 @@ def base_state(args, path: Path):
             "reentry_check_completed": False,
             "checkpoints": {
                 "blueprint_gate": "pending",
+                "brand_baseline_gate": "pending",
                 "branch_exit_gate_last_branch": "",
                 "branch_exit_gate_status": "pending",
                 "pre_convergence_completeness_gate": "pending",
@@ -166,13 +228,7 @@ def base_state(args, path: Path):
         "parallelism": {
             "adapter": "TODO: select the browser/host adapter",
             "host_concurrency_available": False,
-            "groups": [{
-                "id": "parallel-research-001", "mode": "parallel_now",
-                "branch_ids": [item["id"] for item in branches], "task_space_ids": [],
-                "owner_paths": [], "start_condition": "TODO: define the shared gate",
-                "convergence_point": "TODO: define the sequential convergence point",
-                "account_or_rate_limit": "TODO: record account/rate-limit boundary",
-            }],
+            "groups": groups,
         },
         "discovery_attempts": [],
         "external_jobs": [],
@@ -217,6 +273,16 @@ def included_families(state):
         item.get("family") for item in state.get("branch_inventory", [])
         if item.get("disposition") in {"required", "planned"}
     }
+
+
+def included_branch_ids_for_families(state, families):
+    family_set = set(families)
+    return [
+        branch_id
+        for item in state.get("branch_inventory", [])
+        if item.get("family") in family_set and item.get("disposition") in {"required", "planned"}
+        for branch_id in (item.get("branch_ids") or [])
+    ]
 
 
 def blueprint_errors(state):
@@ -293,6 +359,16 @@ def blueprint_errors(state):
             errors.append(f"parallel group {group.get('id')}: invalid mode")
         if parallelism.get("host_concurrency_available") and group.get("mode") in {"parallel_now", "parallel_after_gate"} and not group.get("task_space_ids"):
             errors.append(f"parallel group {group.get('id')}: EGO task_space_ids are required when concurrency is available")
+        if group.get("mode") == "parallel_after_gate":
+            subtasks = [item for item in (group.get("subtasks") or []) if item.get("branch_ids")]
+            if len(subtasks) < 2:
+                errors.append(f"parallel group {group.get('id')}: at least two independent subtasks are required")
+            for subtask in subtasks:
+                for key in ("id", "label", "independence_rule"):
+                    if blank(subtask.get(key)):
+                        errors.append(f"parallel subtask {subtask.get('id')}: {key} is empty or a placeholder")
+                if parallelism.get("host_concurrency_available") and not subtask.get("task_space_ids"):
+                    errors.append(f"parallel subtask {subtask.get('id')}: EGO task_space_ids are required")
     return sorted(set(errors))
 
 
@@ -321,6 +397,12 @@ def pre_convergence_errors(state):
     errors = []
     errors.extend(blueprint_errors(state))
     errors.extend(done_branch_errors(state))
+    post_baseline_ids = included_branch_ids_for_families(state, (
+        "direct_competitors", "analogous_mechanisms", "search_intent_keywords",
+        "native_high_performing_cases", "ai_research",
+    ))
+    if post_baseline_ids and (state.get("workflow") or {}).get("checkpoints", {}).get("brand_baseline_gate") != "pass":
+        errors.append("brand_baseline_gate must pass before post-baseline parallel research can converge")
     search = state.get("search_intent") or {}
     if "search_intent_keywords" in included_families(state):
         for key in ("audience_roles", "decision_situations", "query_families", "languages"):
@@ -401,6 +483,18 @@ def gate(state, path: Path, name: str, branch_id=None):
             state_branch["branch_exit_gate"] = "pass"
             checkpoints["branch_exit_gate_last_branch"] = branch_id
             checkpoints["branch_exit_gate_status"] = "pass"
+    elif name == "brand-baseline":
+        errors = []
+        if checkpoints.get("blueprint_gate") != "pass":
+            errors.append("brand baseline gate requires the Blueprint Gate to pass first")
+        baseline_ids = included_branch_ids_for_families(state, BASELINE_FAMILIES)
+        if not baseline_ids:
+            errors.append("brand baseline gate has no included official/social/native branches")
+        for baseline_id in baseline_ids:
+            errors.extend(done_branch_errors(state, baseline_id))
+        if not errors:
+            checkpoints["brand_baseline_gate"] = "pass"
+            workflow["current_stage"] = "research"
     elif name == "pre-convergence":
         errors = pre_convergence_errors(state)
         if not errors:
@@ -440,7 +534,7 @@ def main():
 
     state_arg = sub.add_parser("gate", help="validate and record a workflow gate")
     state_arg.add_argument("--state", required=True, type=Path)
-    state_arg.add_argument("--gate", required=True, choices=("blueprint", "branch-exit", "pre-convergence", "pre-delivery"))
+    state_arg.add_argument("--gate", required=True, choices=("blueprint", "branch-exit", "brand-baseline", "pre-convergence", "pre-delivery"))
     state_arg.add_argument("--branch")
 
     approve = sub.add_parser("approve", help="acknowledge blueprint review after inspecting the ledger")
@@ -453,7 +547,7 @@ def main():
 
     assertion = sub.add_parser("assert", help="fail if an action is not currently allowed")
     assertion.add_argument("--state", required=True, type=Path)
-    assertion.add_argument("--action", required=True, choices=("strategy", "delivery"))
+    assertion.add_argument("--action", required=True, choices=("research", "parallel-research", "ai", "strategy", "delivery"))
 
     status = sub.add_parser("status", help="show compact state and missing gates")
     status.add_argument("--state", required=True, type=Path)
@@ -496,7 +590,7 @@ def main():
             workflow["reentry_check_completed"] = False
             workflow["current_stage"] = "scope"
             workflow.setdefault("checkpoints", {}).update({
-                "blueprint_gate": "pending", "branch_exit_gate_status": "pending",
+                "blueprint_gate": "pending", "brand_baseline_gate": "pending", "branch_exit_gate_status": "pending",
                 "pre_convergence_completeness_gate": "pending", "pre_delivery_gate": "pending",
             })
             workflow["last_reconciled_at"] = now()
@@ -504,12 +598,40 @@ def main():
             return result(True, [], True, action="reentry", revision=control["revision"])
         if args.command == "assert":
             control = state.get("run_control") or {}
-            allowed = control.get("strategy_writing_allowed") if args.action == "strategy" else control.get("delivery_allowed")
             errors = []
             if control.get("reentry_required"):
                 errors.append("reentry is required before this action")
-            if not allowed:
-                errors.append(f"{args.action} is blocked until its workflow gate passes")
+            checkpoints = (state.get("workflow") or {}).get("checkpoints", {})
+            if args.action == "research" and checkpoints.get("blueprint_gate") != "pass":
+                errors.append("research is blocked until the Blueprint Gate passes")
+            elif args.action == "parallel-research":
+                if checkpoints.get("blueprint_gate") != "pass":
+                    errors.append("parallel research is blocked until the Blueprint Gate passes")
+                if checkpoints.get("brand_baseline_gate") != "pass":
+                    errors.append("parallel research is blocked until the brand baseline gate passes")
+                group = next((item for item in (state.get("parallelism") or {}).get("groups", []) if item.get("mode") == "parallel_after_gate"), None)
+                subtasks = [item for item in (group or {}).get("subtasks", []) if item.get("branch_ids")]
+                if len(subtasks) < 2:
+                    errors.append("parallel research needs at least two independent subtasks")
+                if (state.get("parallelism") or {}).get("host_concurrency_available") and any(not item.get("task_space_ids") for item in subtasks):
+                    errors.append("parallel research needs one stable EGO task-space ID per subtask")
+            elif args.action == "ai":
+                ai = state.get("ai_value_gate") or {}
+                browser = state.get("browser_capability_gate") or {}
+                if checkpoints.get("blueprint_gate") != "pass":
+                    errors.append("AI research is blocked until the Blueprint Gate passes")
+                if checkpoints.get("brand_baseline_gate") != "pass":
+                    errors.append("AI research is blocked until the brand baseline gate passes")
+                if ai.get("entry_path") not in {"ego_browser", "api_connector", "open_web_only"}:
+                    errors.append("AI research needs a recorded entry_path")
+                if not ai.get("entry_path_verified"):
+                    errors.append("AI research needs a live entry-path/editor probe")
+                if ai.get("entry_path") == "ego_browser" and browser.get("result") not in {"pass", "degraded"}:
+                    errors.append("EGO AI research needs a PASS or defensible DEGRADED browser capability gate")
+            else:
+                allowed = control.get("strategy_writing_allowed") if args.action == "strategy" else control.get("delivery_allowed")
+                if not allowed:
+                    errors.append(f"{args.action} is blocked until its workflow gate passes")
             return result(not errors, errors, gate="assert", action=args.action)
         if args.command == "status":
             workflow = state.get("workflow") or {}
