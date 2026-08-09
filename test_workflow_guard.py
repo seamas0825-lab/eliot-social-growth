@@ -61,12 +61,14 @@ class WorkflowGuardTests(unittest.TestCase):
         state = self.load()
         state["run_control"]["blueprint_reviewed"] = True
         state["parallelism"]["adapter"] = "ego-browser"
-        group = state["parallelism"]["groups"][0]
-        group.update({
-            "start_condition": "blueprint gate passes",
-            "convergence_point": "sequential evidence convergence",
-            "account_or_rate_limit": "one task space per independent branch",
-        })
+        for group in state["parallelism"]["groups"]:
+            group.update({
+                "start_condition": "blueprint gate passes",
+                "convergence_point": "sequential evidence convergence",
+                "account_or_rate_limit": "one task space per independent branch",
+            })
+            for subtask in group.get("subtasks", []):
+                subtask["independence_rule"] = subtask.get("independence_rule") or "Independent sibling task with sequential convergence."
         for branch in state["branches"]:
             branch.update({
                 "question": f"What evidence changes the {branch['family']} decision?",
@@ -118,6 +120,10 @@ class WorkflowGuardTests(unittest.TestCase):
         for branch in state["branches"]:
             exited = invoke("gate", "--state", str(self.state), "--gate", "branch-exit", "--branch", branch["id"])
             self.assertEqual(exited.returncode, 0, exited.stdout + exited.stderr)
+        baseline = invoke("gate", "--state", str(self.state), "--gate", "brand-baseline")
+        self.assertEqual(baseline.returncode, 0, baseline.stdout + baseline.stderr)
+        parallel = invoke("assert", "--state", str(self.state), "--action", "parallel-research")
+        self.assertEqual(parallel.returncode, 0, parallel.stdout + parallel.stderr)
         state = self.load()
         convergence = state["convergence"]
         convergence.update({

@@ -17,6 +17,7 @@ workflow:
   reentry_check_completed: false
   checkpoints:
     blueprint_gate: "pending | pass | fail"
+    brand_baseline_gate: "pending | pass | fail"
     branch_exit_gate_last_branch: ""
     branch_exit_gate_status: "pending | pass | fail"
     pre_convergence_completeness_gate: "pending | pass | fail"
@@ -102,6 +103,14 @@ parallelism:
       start_condition: ""
       convergence_point: ""
       account_or_rate_limit: ""
+      bundle_description: ""
+      subtasks:
+        - id: "subtask-001"
+          label: ""
+          branch_ids: []
+          task_space_ids: []
+          owner_paths: []
+          independence_rule: ""
 
 discovery_attempts:
   - id: "discovery-001"

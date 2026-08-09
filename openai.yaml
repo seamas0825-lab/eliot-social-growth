@@ -1,4 +1,4 @@
 interface:
   display_name: "Eliot Social Growth"
   short_description: "Eliot（梁一孟）的社媒增长证据、流程门禁与实验执行系统"
-  default_prompt: "Use $eliot-social-growth with scripts/workflow_guard.py: initialize and review the complete branch blueprint, re-open gates after scope changes, verify every branch exit, and design the cheapest executable social-growth experiment."
+  default_prompt: "Use $eliot-social-growth with scripts/workflow_guard.py: initialize and review the complete branch blueprint, assert research before any exclusion, finish the brand baseline, parallelize three independent EGO research subtasks when safe, re-open gates after scope changes, verify every branch exit, and design the cheapest executable social-growth experiment."
