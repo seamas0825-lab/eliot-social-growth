@@ -2,7 +2,7 @@
 
 Use this reference to install and run the skill across Agent Skills-compatible hosts and operating systems. The canonical package is the directory containing `SKILL.md` and its relative `references/` files.
 
-**Skill version:** 1.3.0  
+**Skill version:** 1.3.1  
 **Compatibility verified:** 2026-08-06  
 **License:** MIT
 

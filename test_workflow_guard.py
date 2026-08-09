@@ -51,6 +51,12 @@ class WorkflowGuardTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("placeholder", result.stdout)
 
+    def test_ai_entry_is_pending_until_explicitly_verified(self):
+        state = self.load()
+        self.assertEqual(state["ai_value_gate"]["result"], "pending")
+        self.assertEqual(state["ai_value_gate"]["entry_path"], "pending")
+        self.assertEqual(state["ai_value_gate"]["internal_data_access"], "pending")
+
     def make_reviewable(self):
         state = self.load()
         state["run_control"]["blueprint_reviewed"] = True
@@ -73,7 +79,22 @@ class WorkflowGuardTests(unittest.TestCase):
                 "expected_artifact": f"{branch['family']} evidence ledger",
                 "decision_affected": state["project"]["decision"],
             })
-        state["ai_value_gate"]["reason"] = "Primary sources own the truth; no AI is needed for this narrow test."
+        state["ai_value_gate"].update({
+            "reason": "EGO Browser is available; one bounded browser-AI branch adds multilingual contradiction review.",
+            "result": "one_bounded_branch",
+            "entry_path": "ego_browser",
+            "entry_path_verified": True,
+            "internal_data_access": "user_not_provided",
+            "internal_data_reason": "No private Insights, CRM, or DM export was provided.",
+        })
+        state["browser_capability_gate"].update({
+            "adapter": "ego-browser",
+            "adapter_version": "verified",
+            "verified_date": "2026-08-10",
+            "required_capabilities": ["navigation", "semantic_snapshot", "dom_evaluation", "textarea_input"],
+            "verified_capabilities": ["navigation", "semantic_snapshot", "dom_evaluation", "textarea_input"],
+            "result": "pass",
+        })
         state["search_intent"].update({
             "audience_roles": ["agency buyer"],
             "decision_situations": ["select a China DMC partner"],

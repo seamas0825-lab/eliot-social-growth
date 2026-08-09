@@ -9,11 +9,13 @@ hidden_traps:
   - "Treating the original blueprint as still valid after a scope update"
   - "Using a prose checklist without running the guard"
   - "Writing strategy while a branch is still planned or the reentry flag is active"
+  - "Treating the absence of an MCP or API connector as proof that EGO browser AI is unavailable"
 required_behavior:
   - "Initialize a full run state before broad browsing and reject unresolved TODO branch fields at the Blueprint Gate"
   - "Run reentry after the user constraint, reconcile the ledger, and require a new Blueprint Gate"
   - "Require every included branch to pass its Branch-Exit Gate before pre-convergence"
   - "Use the strategy and delivery assertions as fail-closed stop conditions"
+  - "Record EGO browser as an AI entry path after a live capability/editor probe, while recording internal-data access separately"
 forbidden_behavior:
   - "Claiming a gate passed because it was described in prose"
   - "Continuing to strategy or delivery after guard failure"

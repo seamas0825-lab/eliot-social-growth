@@ -180,7 +180,9 @@ def base_state(args, path: Path):
             "primary_source_faster": False, "real_user_faster": False,
             "internal_data_owns_answer": False, "cheap_test_faster": False,
             "reversible_judgment_safe": False, "ai_value_added": [],
-            "result": "no_ai", "reason": "TODO: record the AI value decision",
+            "result": "pending", "entry_path": "pending", "entry_path_verified": False,
+            "internal_data_access": "pending", "internal_data_reason": "TODO: record internal data access",
+            "reason": "TODO: record the AI value decision",
         },
         "browser_capability_gate": {
             "adapter": "", "adapter_version": "", "verified_date": "",
@@ -329,8 +331,22 @@ def pre_convergence_errors(state):
     ai = state.get("ai_value_gate") or {}
     if blank(ai.get("reason")):
         errors.append("ai_value_gate.reason must record whether AI changes the decision")
-    if ai.get("result") not in {"no_ai", "one_bounded_branch", "multiple_distinct_branches"}:
+    if ai.get("result") not in {"pending", "no_ai", "one_bounded_branch", "multiple_distinct_branches"}:
         errors.append("ai_value_gate.result is invalid")
+    if ai.get("result") == "pending":
+        errors.append("ai_value_gate.result is still pending; complete the AI Value Gate before convergence")
+    if ai.get("entry_path") not in {"ego_browser", "api_connector", "open_web_only", "unavailable"}:
+        errors.append("ai_value_gate.entry_path must record the actual AI entry path; do not infer unavailability from missing connectors")
+    if ai.get("internal_data_access") not in {"available", "user_not_provided", "unavailable"}:
+        errors.append("ai_value_gate.internal_data_access must be recorded separately from AI access")
+    if ai.get("entry_path") == "ego_browser":
+        browser = state.get("browser_capability_gate") or {}
+        if not ai.get("entry_path_verified"):
+            errors.append("EGO browser AI entry path must be verified with the live editor probe")
+        if browser.get("result") not in {"pass", "degraded"}:
+            errors.append("EGO browser AI entry path requires a PASS or defensible DEGRADED browser capability gate")
+    if "ai_research" in included_families(state) and ai.get("result") == "no_ai":
+        errors.append("ai_research is included in the blueprint but ai_value_gate.result is no_ai; reconcile the disposition or run the branch")
     convergence = state.get("convergence") or {}
     if ai.get("result") == "multiple_distinct_branches" and convergence.get("multi_ai_gate") not in {"pass", "provisional_test"}:
         errors.append("multiple AI branches require a completed convergence gate")

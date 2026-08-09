@@ -136,7 +136,11 @@ ai_value_gate:
   cheap_test_faster: false
   reversible_judgment_safe: false
   ai_value_added: []
-  result: "no_ai | one_bounded_branch | multiple_distinct_branches"
+  result: "pending | no_ai | one_bounded_branch | multiple_distinct_branches"
+  entry_path: "pending | ego_browser | api_connector | open_web_only | unavailable"
+  entry_path_verified: false
+  internal_data_access: "pending | available | user_not_provided | unavailable"
+  internal_data_reason: ""
   reason: ""
 
 browser_capability_gate:

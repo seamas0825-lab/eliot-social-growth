@@ -1,6 +1,6 @@
 # Eliot Social Growth
 
-[![Version](https://img.shields.io/badge/version-1.3.0-blue)](https://github.com/seamas0825-lab/eliot-social-growth/releases/tag/v1.3.0)
+[![Version](https://img.shields.io/badge/version-1.3.1-blue)](https://github.com/seamas0825-lab/eliot-social-growth/releases/tag/v1.3.1)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **Created by Eliot（梁一孟）.** An Agent Skills-compatible evidence-to-experiment operating system for social growth. It turns direct user and market evidence into hard strategic choices, repeatable content systems, and measurable experiments while preserving uncertainty, human judgment, and source traceability.
@@ -178,6 +178,6 @@ Do not commit account identifiers, passwords, one-time codes, API keys, recovery
 
 ## Version and license
 
-Current version: **1.3.0**. The Skill was renamed from `social-media-deep-research` to `eliot-social-growth`; existing users should reinstall under the new name. See [Releases](https://github.com/seamas0825-lab/eliot-social-growth/releases).
+Current version: **1.3.1**. The Skill was renamed from `social-media-deep-research` to `eliot-social-growth`; existing users should reinstall under the new name. See [Releases](https://github.com/seamas0825-lab/eliot-social-growth/releases).
 
 Licensed under the [MIT License](LICENSE).
