@@ -82,6 +82,23 @@ When the user adds, removes, or changes scope, evidence, audience, constraints, 
 
 For continuations, compaction, handoff, or return from a slow external job, read the state and run `status` before doing anything else. The guard is deliberately independent of Codex, EGO, or any single browser host; it is the executable stop condition that prevents a capable model from silently skipping a branch.
 
+## Keep the gates and reduce execution latency
+
+Do not make the workflow faster by dropping a branch, weakening a gate, merging evidence with inference, or drafting strategy early. Make it faster by reducing tool round trips, duplicate capture, and low-value source expansion.
+
+After the Blueprint Gate, apply these execution rules:
+
+1. **Lock a branch evidence budget.** Use each branch's existing time or source budget to predeclare account/profile counts, original-post counts, keyword families, supplemental cases, authoritative sources, visual inspections, and fallback attempts. Stop when the branch stop rule is met; do not spend the full budget merely because it exists.
+2. **Separate discovery from extraction.** First collect and deduplicate canonical profile/post/source URLs. Then extract the bounded set in one coherent adapter invocation per branch or safe batch. Avoid the repeated pattern “search one → open one → summarize one.”
+3. **Use the lightest sufficient read.** Default to semantic/DOM or structured metadata for author, date, caption, public labels, format, canonical URL, and account context. Use screenshots or visual capture only when first-frame, cover, subtitle, layout, or shot structure could change the decision. Use direct first-party text retrieval for static official pages when the adapter supports it.
+4. **Batch independent URLs inside the branch.** In EGO, reuse the branch task space and loop across the preselected URLs in one heredoc; in other adapters, use the nearest equivalent batch. Keep shared or stateful interactions sequential.
+5. **Write evidence once.** Store raw observations in the owning branch artifact with stable source IDs. Other artifacts should cite those IDs and record only new inference or decision impact instead of copying the same evidence.
+6. **Reconcile by branch or wave.** Prepare source IDs, conflicts, limitations, and status together, then run every required branch-exit gate and audit in order within one terminal/tool batch when safe. This reduces interface calls but does not remove or reorder a checkpoint.
+7. **Scaffold, then wait.** A blank deliverable schema or field list may be prepared after the blueprint, but do not populate strategic recommendations or calendar content until the relevant strategy/calendar assertion passes.
+8. **Stop on mechanism saturation.** When new sources repeat an existing mechanism and cannot reverse a belief, change a content field, or alter the experiment, close the branch. Record what remains unknown rather than browsing for reassurance.
+
+Prefer one substantial browser round that discovers, observes, extracts, verifies, and logs a bounded batch over many tiny probe rounds. Tiny probes remain appropriate for fresh capability checks, dynamic editors, authentication handoffs, errors, or visually ambiguous evidence. Read [references/workflow-control.md](references/workflow-control.md) for the same-workflow execution profile.
+
 ## Load only the references required
 
 - Browser/host selection and installation: [references/platform-compatibility.md](references/platform-compatibility.md)

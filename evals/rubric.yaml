@@ -23,6 +23,8 @@ criteria:
     question: "When a direct URL, website, or social profile failed, did the agent use a bounded search-engine and platform-native discovery ladder, verify originals, and record the resulting gap instead of repeatedly retrying or giving up?"
   - id: parallelism_planning
     question: "Did the agent identify genuinely independent browser or research branches for separate task spaces while keeping shared surfaces, sensitive actions, and convergence sequential?"
+  - id: execution_efficiency
+    question: "Without weakening any gate, did the agent predeclare evidence budgets, separate discovery from extraction, batch independent URLs, reserve visual inspection for decision-relevant cases, write evidence once, reconcile by branch or wave, and stop on mechanism saturation?"
   - id: search_intent_native_performance
     question: "For content/discovery work, did the agent build audience-language keyword families, probe search and native platform surfaces, and trace queries to original high-performing cases without inventing viral thresholds?"
   - id: cross_platform_keyword_transfer

@@ -101,6 +101,76 @@ Before every research wave, run `workflow_guard.py audit`. When the audit identi
 
 Use a two-wave default. Wave 1 is the sequential official brand/account/native baseline. Wave 2 may run three independent EGO task spaces when safe: (1) direct competitors plus analogous mechanisms, (2) user-selected bounded AI services, and (3) keyword families traced to target-native and supplemental-platform performance. Keep authentication handoffs, sensitive actions, belief convergence, and final strategy selection sequential.
 
+## Run the same workflow with fewer round trips
+
+Efficiency is an execution property, not a reason to weaken the blueprint. Preserve every branch disposition, branch-exit gate, audit, prerequisite, belief gate, and delivery gate.
+
+### 1. Budget the evidence before opening pages
+
+Translate every branch's time or source budget into a bounded retrieval plan. For example:
+
+```text
+Official baseline: 3 first-party pages
+Target account: 12 recent originals + up to 3 outliers
+Direct competitors: 3 verified accounts × 2 originals
+Adjacent or analogous cases: 2–3 originals
+Native keyword families: 3–6
+Supplemental-platform originals: 2–4
+Authoritative facts: 2–4 first-party sources
+Visual inspections: only decision-relevant covers, layouts, or shot structures
+Fallback attempts: no more than the predeclared ladder requires
+```
+
+These are task-specific examples, not new universal minimums. Stop earlier when the declared stop rule is satisfied.
+
+### 2. Use a discovery pass and an extraction pass
+
+During discovery, capture only canonical URLs, account identity, classification lead, query path, and why the source may change the decision. Deduplicate before opening originals.
+
+During extraction, process the selected originals as a batch. Capture a compact row per source:
+
+```text
+source_id | canonical_url | author/account | date | format |
+caption/topic | visible labelled metrics | first-frame/line mechanism |
+decision use | conflict/limitation
+```
+
+Do not narrate or synthesize after every URL. Finish the bounded batch, then write one observation/inference/decision synthesis for the branch.
+
+### 3. Match observation cost to the decision
+
+- Use semantic/DOM or structured metadata for text and public labels.
+- Add a screenshot only when visual packaging, first-frame legibility, subtitle treatment, layout, or authenticity affects the mechanism judgment.
+- Use first-party direct text retrieval for static official pages; reserve interactive browser work for dynamic or authenticated surfaces.
+- If live DOM and metadata disagree, record the discrepancy once and apply the declared preference rule across the batch.
+
+### 4. Batch safely inside preserved task spaces
+
+Reuse one stable task space per branch/subtask. In EGO, loop across the deduplicated URL list inside one coherent heredoc and emit structured rows with `cliLog`. In another host, use its nearest safe batch equivalent. Do not batch login, CAPTCHA, consent, publication, payment, shared-editor writes, or any interaction where one page's state changes another.
+
+Keep browser rounds substantial: observe, act if authorized, extract, verify, and log several independent sources. Use a tiny round only for a capability probe, error diagnosis, authentication handoff, or ambiguous visual state.
+
+### 5. Reconcile once per branch or completed wave
+
+Write raw observations once in the owning branch artifact. Reuse stable evidence IDs in the belief audit, evidence limits, and research-to-calendar change log.
+
+When several independent branches finish in the same wave, prepare each branch's sources, conflicts, limitations, changed beliefs, and final status first. Then run each required `branch-exit` gate and `audit` in order inside one shell/tool batch. This reduces interface latency without collapsing checkpoints or hiding a failed gate.
+
+### 6. Scaffold output fields without drafting early
+
+After the blueprint, create only a blank schema when it prevents later formatting work—for example date, format, topic, on-asset copy, caption, hashtags, CTA, evidence ID, production requirement, and metric. Populate recommendations or calendar content only after the applicable `assert --action strategy` or `assert --action calendar` succeeds.
+
+### 7. Stop when evidence stops changing the decision
+
+Close a branch when each new source repeats an existing mechanism and cannot reasonably:
+
+- reverse or narrow a first-order belief;
+- change a topic, opening, proof type, format, CTA, cadence, or metric;
+- introduce a new factual, cultural, legal, or operational risk; or
+- change the cheapest next experiment.
+
+Record the saturation reason and remaining uncertainty. Do not continue browsing to make an already-reversible decision feel certain.
+
 ## Lock social content calendars behind the research contract
 
 Before writing a final social content calendar, complete and record all five artifacts:

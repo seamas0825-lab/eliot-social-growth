@@ -1,6 +1,6 @@
 # Eliot Social Growth
 
-[![Version](https://img.shields.io/badge/version-1.4.0-blue)](https://github.com/seamas0825-lab/eliot-social-growth/releases/tag/v1.4.0)
+[![Version](https://img.shields.io/badge/version-1.4.1-blue)](https://github.com/seamas0825-lab/eliot-social-growth/releases/tag/v1.4.1)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **Created by Eliot（梁一孟）.** An Agent Skills-compatible evidence-to-experiment operating system for social growth. It turns direct user and market evidence into hard strategic choices, repeatable content systems, and measurable experiments while preserving uncertainty, human judgment, and source traceability.
@@ -28,6 +28,10 @@ Choose a run mode:
 The source counts are effort guardrails, not statistical proof thresholds. See [run modes](references/run-modes.md).
 
 Before formal research, the Skill silently detects the OS-specific browser path, assesses task difficulty, presents Light/Standard/Deep with a recommendation, checks only relevant social/AI login states, and shows the proposed workflow. Social content calendars are fail-closed until competitor data, keyword psychology, keyword-to-native performance, evidence limitations, and a research-to-calendar change log are complete.
+
+## Same workflow, fewer round trips
+
+The Skill keeps every branch, gate, belief check, and calendar prerequisite while reducing execution latency. It predeclares evidence budgets, separates URL discovery from batch extraction, uses light DOM/metadata reads unless visual evidence can change the decision, writes evidence once with stable IDs, reconciles completed branches by wave, and stops when new sources no longer change a belief, content field, risk, or experiment. See [workflow control](references/workflow-control.md#run-the-same-workflow-with-fewer-round-trips).
 
 ## Browser compatibility
 
@@ -180,6 +184,6 @@ Do not commit account identifiers, passwords, one-time codes, API keys, recovery
 
 ## Version and license
 
-Current version: **1.4.0**. The Skill was renamed from `social-media-deep-research` to `eliot-social-growth`; existing users should reinstall under the new name. See [Releases](https://github.com/seamas0825-lab/eliot-social-growth/releases).
+Current version: **1.4.1**. The Skill was renamed from `social-media-deep-research` to `eliot-social-growth`; existing users should reinstall under the new name. See [Releases](https://github.com/seamas0825-lab/eliot-social-growth/releases).
 
 Licensed under the [MIT License](LICENSE).

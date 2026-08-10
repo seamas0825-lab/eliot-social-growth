@@ -13,6 +13,7 @@ hidden_traps:
   - "Treating all branches as mandatory regardless of user scope or decision value"
   - "Losing a planned branch after a long browser or AI task"
   - "Opening every browser task sequentially even when independent EGO task spaces are available"
+  - "Using one browser/tool round per URL, taking screenshots for every source, duplicating evidence across artifacts, or browsing beyond the stop rule"
   - "Calling a post viral without account-relative or comparable performance context"
 required_behavior:
   - "Silently detect the OS-specific browser and companion Skill path; if available, continue without reminding the user; assess difficulty and let the user choose Light/Standard/Deep with a recommendation"
@@ -20,6 +21,8 @@ required_behavior:
   - "Create and persist a branch blueprint before broad browsing, including official baseline, official/native social, search intent, native high-performing cases, direct competitors, analogous mechanisms, user/internal truth, authoritative facts, and AI"
   - "Mark every branch required, planned, excluded_by_user, excluded_by_value_gate, or not_applicable with a reason"
   - "Plan independent official, competitor, analogous, keyword, and native-performance branches for separate EGO task spaces when safe, while keeping convergence sequential"
+  - "Predeclare bounded source and visual-review budgets, collect and deduplicate canonical URLs before extraction, batch independent originals in preserved task spaces, and use screenshots only when visual packaging can change the decision"
+  - "Write each observation once with stable source IDs, reconcile completed branches in ordered gate/audit batches, and stop when additional sources repeat mechanisms without changing a belief, content field, risk, or experiment"
   - "Build audience-role and problem-language keyword families before using platform-native or open-web search to find original high-performing posts"
   - "Run branch-exit and pre-convergence completeness checks before choosing content pillars or writing the calendar"
   - "Treat direct competitors and cross-category analogues as mandatory research branches for social content strategy"
@@ -31,6 +34,7 @@ forbidden_behavior:
   - "Silently omitting the website, official account, competitors, analogous cases, keywords, native winners, or AI Value Gate"
   - "Inventing viral thresholds, saves, shares, reach, inquiry volume, or audience prevalence"
   - "Writing the final calendar while any of the five content-strategy contract artifacts is incomplete"
+  - "Claiming efficiency by skipping a branch, gate, contradiction, original-source check, belief audit, or calendar assertion"
 expected_decisions:
   - "A hard/soft dependency graph with explicit exclusions and fallbacks"
   - "A source-linked synthesis that separates observed performance from buyer-intent inference"
@@ -47,6 +51,7 @@ evaluation:
     - ai_value_gate
     - browser_capability_gate
     - parallelism_planning
+    - execution_efficiency
     - search_intent_native_performance
     - calendar_research_contract
     - cross_platform_keyword_transfer
@@ -55,11 +60,12 @@ evaluation:
     - belief_gate
     - executability
     - experiment_quality
-  minimum_total: 22
+  minimum_total: 24
   mandatory_twos:
     - decision_first
     - workflow_blueprint
     - stage_integrity
+    - execution_efficiency
     - calendar_research_contract
     - evidence_integrity
     - experiment_quality
